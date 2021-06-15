@@ -9,3 +9,9 @@
 
 **Creators:**
 Connor Boyce, Willem Jacobs, Alex Payne, David Waiganjo
+
+Project Prep #4:
+[User Sotries](https://docs.google.com/document/d/12WgVk5jdTMW7lnwsdDd4-5J7oNBglc0ReG8hjAPpAeI/edit?usp=sharing)
+
+Domain Modeling
+[Link for Domain Model](https://app.diagrams.net/?src=about#G1VEQq2yUZCTVvXpZ0Fxf_2_0f84wufsNz)
