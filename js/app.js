@@ -1,11 +1,28 @@
 'use strict';
 
 // Global variabls
+const filterSubject = [];
+
 
 // JS to HTML links
+const backdrop = document.querySelector('.backdrop');
+const modal = document.querySelector('.modal');
+const modalCancelButton = document.querySelector('.modal__action--negative');
+const addPostButton = document.querySelector('.header-nav__item--cta');
+
+// Set event listeners for backdrop & modal
+addPostButton.addEventListener('click', function() {
+  modal.classList.add('open');
+  backdrop.classList.add('open');
+});
+
+modalCancelButton.addEventListener('click', function() {
+  modal.classList.remove('open');
+  backdrop.classList.remove('open');
+});
 
 // Constructor for Product
-// function Product(name, image) {
+// function Post(name, image) {
 //   this.name = name;
 //   this.displayImage = image;
 //   this.clickCount = 0;
