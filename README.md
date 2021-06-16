@@ -17,3 +17,7 @@ Domain Modeling
 [Link for Domain Model](https://app.diagrams.net/?src=about#G1VEQq2yUZCTVvXpZ0Fxf_2_0f84wufsNz)
 
 [WireFrame](https://www.figma.com/file/XPGQTQvHAbcN2x9AztZiKR/mindSpace?node-id=0%3A1)
+
+### Tuesday
+**06/15/2021**
+- Connor Boyce --> 
