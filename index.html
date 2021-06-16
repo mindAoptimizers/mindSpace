@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>mindSpace</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <script src="js/app.js" defer></script> -->
+  </head>
+  <body>
+    <div class='backdrop'></div>
+    <div class='modal'>
+      <h1 class="modal__title">Enter your post</h1>
+        <div class="modal__actions">
+            <button class="modal__action" type="button">Save</button>
+            <button class="modal__action modal__action--negative" type="button">Cancel</button>
+        </div>
+    </div>
+    <header class="header-main">
+        <a href="index.html" class="header-main__brand">
+        <img src="img/brain-logo2.png" alt="">mindSpace
+      </a>
+      <nav class="header-nav">
+        <ul class="header-nav__items">
+          <li class="header-nav__item"><a href="./index.html">Home</a></li>
+          <li class="header-nav__item"><a href="pages/aboutus.html">About Us</a></li>
+          <li class="header-nav__item"><a href="pages/quiz.html">Quiz</a></li>
+          <li class="header-nav__item header-nav__item--cta">
+            <a href="#">Add Post</a>
+        </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="filter-main">
+        <ul class="filter-main__items">
+          <li class="filter-main__item">
+            <label for="jsinput">
+              <input id="jsinput" type="checkbox">
+              <img src="img/JS_logo.png" alt="JavaScript Logo">
+            </label>
+          </li>
+          <li class="filter-main__item">
+            <label for="htmlinput">
+              <input id="htmlinput" type="checkbox">
+              <img src="img/html_logo2.png" alt="HTML Logo">
+            </label>
+          </li>
+          <li class="filter-main__item">
+            <label for="cssinput">
+              <input id="cssinput" type="checkbox">
+              <img src="img/css_logo.png" alt="CSS Logo">
+            </label>
+          </li>
+          <li class="filter-main__item">
+            <label for="reactinput">
+              <input type="checkbox" id="reactinput">
+              <img src="img/react_logo.png" alt="React Logo">
+            </label>
+          </li>
+          <li class="filter-main__item">
+            <label for="mongodbinput">
+              <input type="checkbox" id="mongodbinput">
+              <img src="img/mongodb-logo.png" alt="MongoDB Logo">
+            </label>
+          </li>
+        </ul>
+      </section>
+      <section class="post-template__card">
+        
+      </section>
+      <h1>Home Page</h1>
+    </main>
+  </body>
+</html>
