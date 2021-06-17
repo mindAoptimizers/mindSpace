@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>mindSpace</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+  </head>
+  <body>
+    <div class='backdrop'></div>
+    <div class='modal'>
+      <h1 class="modal__title">Blog Post Entry</h1>
+      <form class="post-form" id="post-form">
+        <label for="title">Title</label>
+        <input id="title" type="text" name="title" required>
+        <label for="post">Blog Post</label>
+        <textarea name="post" id="post" cols="40" rows="15" placeholder="Enter your blog post" name="post" required></textarea>
+        <label for="subject">Subject</label>
+        <select id="subject" name="subject">
+            <option value="js">JavaScript</option>
+            <option value="html">HTML 5</option>
+            <option value="css">CSS 3</option>
+            <option value="react">React</option>
+            <option value="mongo">MongoDB</option>
+        </select>
+        <label for="difficulty">Difficulty</label>
+        <select id="difficulty" name="difficulty">
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advance">Advance</option>
+        </select>
+        <label for="favorite">Favorite</label>
+        <input type="checkbox" id="favorite" name="favorite" value="true">
+      </form>
+      <div class="modal__actions">
+        <button class="modal__action modal__action--negative" type="submit">Cancel</button>
+        <button class="modal__action" type="button" form="post-form">Save</button>
+      </div>
+    </div>
+    <header class="header-main">
+        <a href="index.html" class="header-main__brand">
+        <img src="img/brain-logo2.png" alt="">mindSpace
+      </a>
+      <nav class="header-nav">
+        <ul class="header-nav__items">
+          <li class="header-nav__item"><a href="./index.html">Home</a></li>
+          <li class="header-nav__item"><a href="pages/aboutus.html">About Us</a></li>
+          <li class="header-nav__item"><a href="pages/quiz.html">Quiz</a></li>
+          <li class="header-nav__item header-nav__item--cta">
+            <a href="#">Add Post</a>
+        </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="filter-main">
+        <ul class="filter-main__items">
+          <li class="filter-main__item">
+            <label for="js">
+              <input id="js" type="checkbox">
+              <img src="img/JS_logo.png" alt="JavaScript Logo">
+            </label>
+          </li>
+          <li class="filter-main__item">
+            <label for="html">
+              <input id="html" type="checkbox">
+              <img src="img/html_logo2.png" alt="HTML Logo">
+            </label>
+          </li>
+          <li class="filter-main__item">
+            <label for="css">
+              <input id="css" type="checkbox">
+              <img src="img/css_logo.png" alt="CSS Logo">
+            </label>
+          </li>
+          <li class="filter-main__item">
+            <label for="react">
+              <input type="checkbox" id="react">
+              <img src="img/react_logo.png" alt="React Logo">
+            </label>
+          </li>
+          <li class="filter-main__item">
+            <label for="mongodb">
+              <input type="checkbox" id="mongodb">
+              <img src="img/mongodb-logo.png" alt="MongoDB Logo">
+            </label>
+          </li>
+        </ul>
+      </section>
+      <section class="post-template__card">
+        
+      </section>
+      <h1>Home Page</h1>
+    </main>
+  </body>
+</html>
