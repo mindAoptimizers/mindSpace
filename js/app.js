@@ -1,7 +1,7 @@
 'use strict';
 
 // Global variabls
-
+const journalEntryLog = document.querySelector(''); 
 // JS to HTML links
 
 // Constructor for Product
