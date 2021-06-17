@@ -130,6 +130,8 @@ function buildPosts(event) {
 function renderPostCard() {
   // TODO
   let newCard = cardTemplate.cloneNode(true);
+  let today = new Date();
+  let date = today.getFullYear() + ‘-’ + (today.getMonth()+1) + ‘-’ + today.getDate();
   let cardParent = document.querySelector('.post-card');
   newCard.querySelector('h1').textContent = 'Copy of template Card';
   cardParent.appendChild(newCard);
