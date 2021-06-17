@@ -82,7 +82,7 @@ function loadLocalData() {
   let postsData = JSON.parse(localStorage.getItem('posts'));
   if (postsData) {
     allPosts = postsData;
-    for (let i = 0; 1 < allPosts.length; i ++) {
+    for (let i = 0; i < allPosts.length; i ++) {
       renderPostCard(i);
     }
   } else {
@@ -136,11 +136,12 @@ function renderPostCard(index) {
   let newCard = cardTemplate.cloneNode(true);
   let cardParent = document.querySelector('.post-cards');
   let cardFirstChild = cardParent.firstChild;
-  newCard.querySelector('h1').textContent = allPosts[index].title;
-  newCard.querySelector('h2').textContent = allPosts[index].postDate;
-  newCard.querySelector('p').textContent = allPosts[index].post;
-  newCard.querySelector('img').src = allPosts[index].image;
-  newCard.querySelector('img').alt = allPosts[index].subject;
+  newCard.querySelector('.post-card__title h1').textContent = allPosts[index].title;
+  newCard.querySelector('.post-card__title h2').textContent = allPosts[index].postDate;
+  newCard.querySelector('.post-card__level h2').textContent = allPosts[index].difficulty;
+  newCard.querySelector('.post-card__body p').textContent = allPosts[index].post;
+  newCard.querySelector('.post-card__image img').src = allPosts[index].image;
+  newCard.querySelector('.post-card__image img').alt = allPosts[index].subject;
   newCard.className = 'post-card';
   cardParent.insertBefore(newCard, cardFirstChild);
 }
