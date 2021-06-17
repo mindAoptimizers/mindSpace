@@ -166,3 +166,11 @@
   border-color: red !important;
   background: #faacac;
 }
+
+.post-template__card {
+  height: 200px;
+  width: 960px;
+  margin: auto;
+  margin-top: 20px;
+  border: 1px solid black;
+}
