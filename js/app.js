@@ -42,7 +42,7 @@ function Post(title, post, subject, difficulty, favorite, image) {
 
 // toggle favorite method
 Post.prototype.favoriteToggle = function() {
-   // TODO
+  // TODO
 };
 
 // *** Functions ***
@@ -60,7 +60,7 @@ function addPost(event) {
   // DONE: close the modal dialog and the backdrop & reset the form.
   closeModal();
   // TODO: Render the new post at the top of the list.
-  renderPostCard();
+  renderPostCard(allPosts.length - 1);
 }
 
 // edit post method
@@ -75,12 +75,14 @@ function deletePost() {
 
 // load local storage data
 function loadLocalData() {
-  // TODO: check if local storage exists and if does, load & send the objects to the allPosts array.
+  // DONE: check if local storage exists and if does, load & send the objects to the allPosts array.
   // render the posts. If no local storage display a no posts message
   let postsData = JSON.parse(localStorage.getItem('posts'));
   if (postsData) {
     allPosts = postsData;
-    console.log('data found in local storage');
+    for (let i = 0; 1 < allPosts.length; i ++) {
+      renderPostCard(i);
+    }
   } else {
     console.log('no data found in local storage');
     renderNoPosts();
@@ -95,8 +97,8 @@ function saveLocalData() {
 
 // build post object from add/edit modal and populate array
 function buildPosts(event) {
-  // TODO: build new object from user data and validate.
-  // vaidation needs to be added.
+  // DONE: build new object from user data and validate.
+  // TODO: vaidation needs to be added.
   event.preventDefault();
   const title = postForm.title.value;
   const post = postForm.post.value;
@@ -127,12 +129,16 @@ function buildPosts(event) {
   saveLocalData();
 }
 
-function renderPostCard() {
+function renderPostCard(index) {
   // TODO
   let newCard = cardTemplate.cloneNode(true);
-  let cardParent = document.querySelector('.post-card');
-  newCard.querySelector('h1').textContent = 'Copy of template Card';
-  cardParent.appendChild(newCard);
+  let cardParent = document.querySelector('.post-cards');
+  let cardFirstChild = cardParent.firstChild;
+  newCard.querySelector('h1').textContent = allPosts[index].title;
+  newCard.querySelector('p').textContent = allPosts[index].post;
+  newCard.querySelector('img').src = allPosts[index].image;
+  newCard.className = 'post-card';
+  cardParent.insertBefore(newCard, cardFirstChild);
 }
 
 function renderNoPosts() {
