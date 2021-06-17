@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Resources</title>
   <link rel="stylesheet" href="../css/reset.css">
@@ -7,9 +8,11 @@
   <link rel="stylesheet" href="../css/style.css">
   <!-- <script src="js/app.js" defer></script> -->
 </head>
+
 <body>
   <header class="header-main">
     <a href="index.html" class="header-main__brand">
+
     <img src="img/brain-logo2-transparent.png" alt="">mindSpace
   </a>
   <nav class="header-nav">
@@ -22,110 +25,186 @@
   </nav>
 </header>
   <main>
-    <h1>Quizes</h1>
-    <form id="form">
-      <div id="quiz-start"></div>
-      <button id="submit"></button>
-      <div id="results"></div>
-      <div id="q1">
-        <h2>Here's your first question!</h2>
-        <p>In JavaScript, what's the difference between "==" and "==="?</p>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
+    
+    <div class="top">
+      <h1>How smart are you?</h1>
+    </div>
+    <div class="result">
+      <p>You got <span>0%</span> correct answers </p>
+    </div>
+
+    <form class="quizForm">
+      <div class="1">
+        <p class="question1">1. What Unix command creates a new directory</p>
+        <div>
+          <input type="radio" name="q1" value="A">
+          <label> new directory</label>
+        </div>
+        <div>
+          <input type="radio" name="q1" value="B">
+          <label>mkdir </label>
+        </div>
+        <div>
+          <input type="radio" name="q1" value="C">
+          <label> Try both to see which works</label>
+        </div>
       </div>
-      <div id="q2">
-        <h2>Here's your second question!</h2>
-        <p></p>
-        <input type="radio">
-        <label>Short</label>
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
+      <div class="2">
+        <p class="question2">2. What is the difference between the "==" and "===" in javaScript </p>
+        <div>
+          <input type="radio" name="q2" value="A">
+          <label> "===" is used for comparing two variables while checking datatype, while"==""
+            ignores the datatype variable</label>
+        </div>
+        <div>
+          <input type="radio" name="q2" value="B">
+          <label>it varies and depends upon the context </label>
+        </div>
+        <div>
+          <input type="radio" name="q2" value="C">
+          <label> They have no relevant difference</label>
+        </div>
       </div>
-      <div id="q3">
-        <h2>Here's your third question!</h2>
-        <p></p>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
+
+      <div class="3">
+        <p class="question3">3. what does Math.Truncate do? </p>
+        <div>
+          <input type="radio" name="q3" value="A">
+          <label>This method only return the intergral part of dec and discards the fractional
+            part</label>
+        </div>
+        <div class="answer2">
+          <input type="radio" name="q3" value="B">
+          <label> It truncates the decimal values from a floating point number </label>
+        </div>
+        <div>
+          <input type="radio" name="q3" value="C">
+          <label> Same as Math.floor</label>
+        </div>
       </div>
-      <div id="q4">
-        <h2>Here's your fourth question!</h2>
-        <p></p>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
+
+      <div class="4">
+        <p class="question4">4. When used inside of an object, "this" refer to </p>
+        <div>
+          <input type="radio" name="q4" value="A">
+          <label">The object that it is used in</label>
+        </div>
+        <div>
+          <input type="radio" name="q4" value="B">
+          <label> The function concatenation </label>
+        </div>
+        <div>
+          <input type="radio" name="q4" value="C">
+          <label> The method it is used in</label>
+        </div>
       </div>
-      <div id="q5">
-        <h2>Here's your fifth question!</h2>
-        <p></p>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
+
+      <div class="5">
+        <p class="question5">5. What is the term used for a function that is associated with an object </p>
+        <div>
+          <input type="radio" name="q5" value="A">
+          <label> A method</label>
+        </div>
+        <div>
+          <input type="radio" name="q5" value="B">
+          <label>An instance </label>
+        </div>
+        <div>
+          <input type="radio" name="q5" value="C">
+          <label> An example</label>
+        </div>
       </div>
-      <div id="q6">
-        <h2>Here's your sixth question!</h2>
-        <p></p>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
+
+      <div class="6">
+        <p class="question6">6. Is an Object a collection of properties and methods </p>
+        <div>
+          <input type="radio" name="q6" value="A">
+          <label>True</label>
+        </div>
+        <div>
+          <input type="radio" name="q6" value="B">
+          <label>False </label>
+        </div>
+        <div>
+          <input type="radio" name="q6" value="C">
+          <label> can be true or false</label>
+        </div>
       </div>
-      <div id="q7">
-        <h2>Here's your seventh question!</h2>
-        <p></p>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
+
+      <div class="7">
+        <p class="question7">7. A function that loads before any code is executed is called a/an? </p>
+        <div>
+          <input type="radio" name="q7" value="A">
+          <label>Declaration</label>
+        </div>
+        <div>
+          <input type="radio" name="q7" value="B">
+          <label>Expression </label>
+        </div>
+        <div>
+          <input type="radio" name="q7" value="C">
+          <label> call back function</label>
+        </div>
       </div>
-      <div id="q8">
-        <h2>Here's your eigth question!</h2>
-        <p></p>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
-        <input type="radio">
-        <label>Short</label>
+
+      <div class="8">
+        <p class="question8">8. In modern browser , localStorage data is stored in </p>
+        <div>
+          <input type="radio" name="q8" value="A">
+          <label> Browser sessions</label>
+        </div>
+        <div>
+          <input type="radio" name="q8" value="B">
+          <label>File system </label>
+        </div>
+        <div>
+          <input type="radio" name="q8" value="C">
+          <label> Cloud</label>
+        </div>
+      </div>
+
+      <div class="9">
+        <p class="question9">9. What is the use of isNaN function </p>
+        <div>
+          <input type="radio" name="q9" value="A">
+          <label">The function returns True if the argument is not a number</label>
+        </div>
+        <div>
+          <input type="radio" name="q9" value="B">
+          <label> just means "not a number" </label>
+        </div>
+        <div>
+          <input type="radio" name="q9" value="C">
+          <label> Am new at this</label>
+        </div>
+      </div>
+
+      <div class="10">
+        <p class="question10">10. Which is faster between JavaScript and ASP script </p>
+        <div>
+          <input type="radio" name="q10" value="A">
+          <label>JavaScript</label>
+        </div>
+        <div class=>
+          <input type="radio" name="q10" value="B">
+          <label class="new">ASP script </label>
+        </div>
+        <div>
+          <input type="radio" name="q10" value="C">
+          <label> it depends on the day</label>
+        </div>
+      </div>
+
+
+
+      <div class="text-center">
+        <input type="submit" class="button">
       </div>
     </form>
+
+
   </main>
-  <script src="/js/quiz.js"></script>
+  <script src="/mindSpace/js/quiz.js"></script>
 </body>
+
 </html>
