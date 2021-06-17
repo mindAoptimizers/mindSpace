@@ -4,7 +4,10 @@
 let filterSubject = [];
 let allPosts = [];
 
+// const journalEntryLog = document.querySelector(''); 
+
 // JS to HTML links
+const cardTemplate = document.querySelector('.post-template__card');
 const addPostButton = document.querySelector('.header-nav__item--cta');
 const backdrop = document.querySelector('.backdrop');
 const modal = document.querySelector('.modal');
@@ -13,7 +16,7 @@ const modalCancelButton = document.querySelector('.modal__action--negative');
 const postForm = document.querySelector('.post-form');
 
 // temp hook to DOM *** TO DELETE AFTER *** used for testing no post message
-const postCard = document.querySelector('main h1');
+// const postCard = document.querySelector('main h1');
 
 // set event listeners
 savePostButton.addEventListener('click', addPost);
@@ -57,6 +60,7 @@ function addPost(event) {
   // DONE: close the modal dialog and the backdrop & reset the form.
   closeModal();
   // TODO: Render the new post at the top of the list.
+  renderPostCard();
 }
 
 // edit post method
@@ -77,7 +81,6 @@ function loadLocalData() {
   if (postsData) {
     allPosts = postsData;
     console.log('data found in local storage');
-    postCard.textContent = 'Local Storage loaded';
   } else {
     console.log('no data found in local storage');
     renderNoPosts();
@@ -124,9 +127,17 @@ function buildPosts(event) {
   saveLocalData();
 }
 
+function renderPostCard() {
+  // TODO
+  let newCard = cardTemplate.cloneNode(true);
+  let cardParent = document.querySelector('.post-card');
+  newCard.querySelector('h1').textContent = 'Copy of template Card';
+  cardParent.appendChild(newCard);
+}
+
 function renderNoPosts() {
   // TODO: display a no posts message to screen
-  postCard.textContent = 'No posts found in local storage';
+  // postCard.textContent = 'No posts found in local storage';
 }
 
 // filter & render
