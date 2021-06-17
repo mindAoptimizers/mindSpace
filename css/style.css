@@ -209,3 +209,60 @@
   padding: 10px;
 
 }
+
+.button__edit {
+  border: solid green;
+  width: 100px;
+  margin-left: 20px;
+  display:block
+}
+
+.button__edit:hover {
+  background: #f7f7f7;
+  border: 1px solid #8b8b8b;
+}
+
+.button__edit:active {
+  background: #2e2e2e;
+  border: 1px solid black;
+  color: white;
+  }
+
+
+.button__delete {
+  border: solid green;
+  margin-top: 10px;
+  margin-left: 20px;
+  width: 100px;
+  display:block
+}
+
+.button__delete:hover {
+  background: #f7f7f7;
+  border: 1px solid #8b8b8b;
+}
+
+.button__delete:active {
+  background: #2e2e2e;
+  border: 1px solid black;
+  color: white;
+  }
+
+  .button__favorite {
+    border: solid green;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 100px;
+    display:block
+  }
+  
+  .button__favorite:hover {
+    background: #f7f7f7;
+    border: 1px solid #8b8b8b;
+  }
+  
+  .button__favorite:active {
+    background: #2e2e2e;
+    border: 1px solid black;
+    color: white;
+    }
