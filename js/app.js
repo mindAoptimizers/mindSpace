@@ -5,6 +5,7 @@ let filterSubject = [];
 let allPosts = [];
 
 // const journalEntryLog = document.querySelector(''); 
+
 // JS to HTML links
 const cardTemplate = document.querySelector('.post-template__card');
 const addPostButton = document.querySelector('.header-nav__item--cta');
