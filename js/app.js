@@ -1,13 +1,12 @@
 'use strict';
 
 // Global variabls
-<<<<<<< HEAD
 let filterSubject = [];
 let allPosts = [];
 
-=======
-const journalEntryLog = document.querySelector(''); 
->>>>>>> 54971c89099481f2f22f476a4b87f1b15e0e485b
+const journalEntryLog = document.querySelector('.post-template__card');
+// const dateTime = document.querySelector('.date-time');
+journalEntryLog.removeAttribute('hidden');
 // JS to HTML links
 const addPostButton = document.querySelector('.header-nav__item--cta');
 const backdrop = document.querySelector('.backdrop');
@@ -130,7 +129,7 @@ function buildPosts(event) {
 
 function renderNoPosts() {
   // TODO: display a no posts message to screen
-  postCard.textContent = 'No posts found in local storage';
+  postCard.textContent = 'No posts found in local storage'
 }
 
 // filter & render

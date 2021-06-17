@@ -166,3 +166,7 @@
   border-color: red !important;
   background: #faacac;
 }
+
+.post-template__card {
+  border: blue;
+}
