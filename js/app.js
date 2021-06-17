@@ -77,6 +77,7 @@ function loadLocalData() {
   if (postsData) {
     allPosts = postsData;
     console.log('data found in local storage');
+    postCard.textContent = 'Local Storage loaded';
   } else {
     console.log('no data found in local storage');
     renderNoPosts();
@@ -85,7 +86,8 @@ function loadLocalData() {
 
 // save posts to local storage
 function saveLocalData() {
-  // TODO: to save allPosts array to local storage.
+  // DONE: to save allPosts array to local storage.
+  localStorage.setItem('posts', JSON.stringify(allPosts));
 }
 
 // build post object from add/edit modal and populate array
@@ -119,6 +121,7 @@ function buildPosts(event) {
     image = 'img/no-logo.png';
   }
   new Post(title, post, subject, difficulty, favorite, image);
+  saveLocalData();
 }
 
 function renderNoPosts() {
