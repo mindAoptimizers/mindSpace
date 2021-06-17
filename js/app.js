@@ -36,7 +36,7 @@ function Post(title, post, subject, difficulty, favorite, image) {
   this.difficulty = difficulty;
   this.favorite = favorite;
   this.image = image;
-  this.postDate = new Date().toString();
+  this.postDate = Date();
   allPosts.push(this);
 }
 
@@ -135,8 +135,10 @@ function renderPostCard(index) {
   let cardParent = document.querySelector('.post-cards');
   let cardFirstChild = cardParent.firstChild;
   newCard.querySelector('h1').textContent = allPosts[index].title;
+  newCard.querySelector('h2').textContent = allPosts[index].postDate;
   newCard.querySelector('p').textContent = allPosts[index].post;
   newCard.querySelector('img').src = allPosts[index].image;
+  newCard.querySelector('img').alt = allPosts[index].subject;
   newCard.className = 'post-card';
   cardParent.insertBefore(newCard, cardFirstChild);
 }

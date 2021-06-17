@@ -137,6 +137,7 @@ main {
 
 .open {
     display: block !important;
+    opacity: 1 !important;
 }
 
 
