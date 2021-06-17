@@ -84,6 +84,7 @@
   border-radius: 8px;
   width: 94px;
   cursor: pointer;
+  margin-left: 50px;
 }
 
 .modal__action:hover,
@@ -132,13 +133,6 @@
   resize: none;
 }
 
-/* .post-form input[id*="terms"],
-.post-form input[id*="terms"] + label {
-  display: inline-block;
-  width: auto;
-  vertical-align: bottom;
-} */
-
 .post-form input:not([type="checkbox"]),
 .post-form select {
   border: 1px solid #ccc;
@@ -158,8 +152,6 @@
   background: white;
   width: 1rem;
   height: 1rem;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
 }
 
@@ -174,12 +166,3 @@
   border-color: red !important;
   background: #faacac;
 }
-
-.post-form__checkbox {
-  grid-column: span 2;
-}
-
-/* .signup-form button[type="submit"] {
-  display: block; 
-} */
-

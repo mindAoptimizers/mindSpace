@@ -11,13 +11,13 @@
     <div class='backdrop'></div>
     <div class='modal'>
       <h1 class="modal__title">Blog Post Entry</h1>
-      <form class="post-form">
+      <form class="post-form" id="post-form">
         <label for="title">Title</label>
-        <input id="title" type="text" required>
+        <input id="title" type="text" name="title" required>
         <label for="post">Blog Post</label>
-        <textarea name="post" id="post" cols="40" rows="15" placeholder="Enter your blog post" required></textarea>
+        <textarea name="post" id="post" cols="40" rows="15" placeholder="Enter your blog post" name="post" required></textarea>
         <label for="subject">Subject</label>
-        <select id="subject">
+        <select id="subject" name="subject">
             <option value="js">JavaScript</option>
             <option value="html">HTML 5</option>
             <option value="css">CSS 3</option>
@@ -25,21 +25,18 @@
             <option value="mongo">MongoDB</option>
         </select>
         <label for="difficulty">Difficulty</label>
-        <select id="difficulty">
+        <select id="difficulty" name="difficulty">
             <option value="1">Beginner</option>
             <option value="2">Intermediate</option>
             <option value="3">Advance</option>
         </select>
-        <div class="post-form__checkbox">
-            <input type="checkbox" id="favorite" required>
-            <label for="favorite">Favorite Post</a>
-            </label>
-        </div>
+        <label for="favorite">Favorite</label>
+        <input type="checkbox" id="favorite" name="favorite" value="true">
       </form>
-        <div class="modal__actions">
-            <button class="modal__action" type="button">Save</button>
-            <button class="modal__action modal__action--negative" type="button">Cancel</button>
-        </div>
+      <div class="modal__actions">
+        <button class="modal__action modal__action--negative" type="submit">Cancel</button>
+        <button class="modal__action" type="button" form="post-form">Save</button>
+      </div>
     </div>
     <header class="header-main">
         <a href="index.html" class="header-main__brand">
