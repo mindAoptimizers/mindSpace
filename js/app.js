@@ -39,7 +39,7 @@ function Post(title, post, subject, difficulty, favorite, image) {
 
 // toggle favorite method
 Post.prototype.favoriteToggle = function() {
-   // TODO
+// TODO
 };
 
 // *** Functions ***
