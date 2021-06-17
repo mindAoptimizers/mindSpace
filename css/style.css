@@ -21,13 +21,14 @@
   left: 0;
   /* background: #87bedc; */
   padding: 0.5rem 1rem;
-  z-index: 60;
+  z-index: 50;
   display: flex;
   align-items: center;
   height: 8rem;
   justify-content: left;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  background: white;
+  /* border-top: 1px solid black;
+  border-bottom: 1px solid black; */
 }
 
 .filter-main__item input {
@@ -53,11 +54,15 @@
 }
 
 .modal {
-  position: fixed;
-  display: none;
+  position: absolute;
+  /* display: none; */
+  opacity: 0;
+  transition: opacity 500ms;
+  float: left;
   z-index: 200;
-  top: 20%;
-  left: 30%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 50rem;
   background: white;
   padding: 1rem;
@@ -170,9 +175,26 @@
 .post-template__card {
   height: 200px;
   width: 960px;
+  display: none;
   margin: auto;
   margin-top: 20px;
   border: 1px solid black;
+}
+
+.post-card {
+  height: 200px;
+  width: 960px;
+  margin: auto;
+  margin-top: 20px;
+  background: bisque;
+  border: 1px solid black;
+}
+
+.post-card img {
+  width: 100px;
+  height: 100px;
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
 .about_me_card {
@@ -207,7 +229,6 @@
   float: left;
   width: 300px;
   padding: 10px;
-
 }
 
 .button__edit {
