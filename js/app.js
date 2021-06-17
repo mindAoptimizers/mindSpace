@@ -1,9 +1,13 @@
 'use strict';
 
 // Global variabls
+<<<<<<< HEAD
 let filterSubject = [];
 let allPosts = [];
 
+=======
+const journalEntryLog = document.querySelector(''); 
+>>>>>>> 54971c89099481f2f22f476a4b87f1b15e0e485b
 // JS to HTML links
 const addPostButton = document.querySelector('.header-nav__item--cta');
 const backdrop = document.querySelector('.backdrop');
