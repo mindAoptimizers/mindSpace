@@ -167,6 +167,14 @@
   background: #faacac;
 }
 
+.post-template__card {
+  height: 200px;
+  width: 960px;
+  margin: auto;
+  margin-top: 20px;
+  border: 1px solid black;
+}
+
 .about_me_card {
   /* Add shadows to create the "card" effect */
   background-color: white;
@@ -199,4 +207,5 @@
   float: left;
   width: 300px;
   padding: 10px;
+
 }
