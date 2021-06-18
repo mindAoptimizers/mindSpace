@@ -51,7 +51,6 @@ function favoriteClickHandler(event) {
   // DONE
   if ((event.target.textContent === 'Favorite') || (event.target.textContent === 'Unfavor')) {
     const postIndex = event.target.id;
-    console.log(event.target.id);
     if (allPosts[postIndex].favorite) {
       allPosts[postIndex].favorite = false;
       event.target.classList.remove('post-card__favorite-selected');
