@@ -1,9 +1,18 @@
-'use strict'
+'use strict';
 // Correct Answers Array
 const answers = ['B', 'A', 'A', 'A', 'A', 'A', 'A', 'B', 'A', 'A'];
 
 const result = document.querySelector('.result');
 const quizForm = document.querySelector('.quizForm');
+const submitForm = document.querySelector('.new');
+const popup = document.querySelector('.popup-wrapper');
+
+submitForm.addEventListener('click', function (e) {
+  e.preventDefault();
+  popup.style.display = 'none';
+
+
+});
 
 quizForm.addEventListener('submit', function (e) {
   e.preventDefault();
@@ -19,8 +28,9 @@ quizForm.addEventListener('submit', function (e) {
     }
 
   });
-  console.log(score);
+  scrollTo(0, 0);
   result.querySelector('span').textContent = `${score}%`;
-  //scroll to method??
 
-})
+
+});
+
