@@ -1,11 +1,8 @@
-.filter-main {
-  display: flex;
-}
-
 .filter-main__items {
   margin: 0;
   padding: 0;
   list-style: none;
+  margin: auto; 
   display: flex;
 }
 
@@ -210,11 +207,10 @@
 .post-card__level {
   grid-area: level;
   padding: 13px 40px;
-  justify-self: end;
-  border: 1px solid black;
+  justify-self: center;
+  align-self: center;
   height: 40px;
   margin-right: 20px;
-  border-radius: 10px;
   background-color: #23b02f;
   color: white;
   font-weight: 700;
@@ -245,7 +241,8 @@
 
 .post-card__buttons {
   grid-area: buttons;
-  padding-top: 10px;
+  padding-top: 2px;
+  align-self: center;
 }
 
 /* .post-card img {

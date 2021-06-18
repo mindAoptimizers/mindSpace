@@ -4,7 +4,7 @@
 let filterSubject = [];
 let allPosts = [];
 
-// const journalEntryLog = document.querySelector(''); 
+// const journalEntryLog = document.querySelector('');
 
 // JS to HTML links
 const cardTemplate = document.querySelector('.post-template__card');
@@ -14,6 +14,7 @@ const modal = document.querySelector('.modal');
 const savePostButton = document.querySelector('.modal__actions button:nth-child(2)');
 const modalCancelButton = document.querySelector('.modal__action--negative');
 const postForm = document.querySelector('.post-form');
+const postDeleteButton = document.querySelector('.post-cards');
 
 // temp hook to DOM *** TO DELETE AFTER *** used for testing no post message
 // const postCard = document.querySelector('main h1');
@@ -21,7 +22,7 @@ const postForm = document.querySelector('.post-form');
 // set event listeners
 savePostButton.addEventListener('click', addPost);
 modalCancelButton.addEventListener('click', closeModal);
-
+postDeleteButton.addEventListener('click', deletePost);
 // Event listener for addPost button to open backdrop & modal
 addPostButton.addEventListener('click', function() {
   modal.classList.add('open');
@@ -69,11 +70,22 @@ function addPost(event) {
 // edit post method
 function editPost() {
   // TODO: Allows a post to be edited and will update the local storage/DOM when saved. Cancel no change.
+
 }
 
 // delete post method
-function deletePost() {
+function deletePost(event) {
   // TODO: Delete a post from the allPosts array and upate local storage & render.
+  console.log(allPosts[event.target.id], event.target.id);
+  let num = parseInt(event.target.id);
+  let newArray = allPosts.filter(each => each.id !== num);
+  console.log(newArray);
+  //Slicing it out of the array instead of making a new array.
+  allPosts = newArray;
+  saveLocalData();
+  location.reload();
+  // let section = document.getElementById(num);
+  // section.style.display = 'none';
 }
 
 // load local storage data
@@ -146,6 +158,7 @@ function renderPostCard(index) {
   newCard.querySelector('.post-card__image img').alt = allPosts[index].subject;
   newCard.className = 'post-card';
   newCard.id = allPosts[index].id;
+  newCard.querySelector('.post-card__delete').id = allPosts[index].id;
   cardParent.insertBefore(newCard, cardFirstChild);
 }
 
