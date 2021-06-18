@@ -29,7 +29,8 @@ addPostButton.addEventListener('click', function() {
 });
 
 // Post constructor
-function Post(title, post, subject, difficulty, favorite, image) {
+function Post(id, title, post, subject, difficulty, favorite, image) {
+  this.id = id;
   this.title = title;
   this.post = post;
   this.subject = subject;
@@ -107,6 +108,7 @@ function buildPosts(event) {
   const subject = postForm.subject.value;
   const difficulty = postForm.difficulty.value;
   const favorite = postForm.favorite.checked ? true : false;
+  const idNumber = allPosts.length;
   let image;
   switch (subject) {
   case 'html':
@@ -127,7 +129,7 @@ function buildPosts(event) {
   default:
     image = 'img/no-logo.png';
   }
-  new Post(title, post, subject, difficulty, favorite, image);
+  new Post(idNumber, title, post, subject, difficulty, favorite, image);
   saveLocalData();
 }
 
@@ -143,6 +145,7 @@ function renderPostCard(index) {
   newCard.querySelector('.post-card__image img').src = allPosts[index].image;
   newCard.querySelector('.post-card__image img').alt = allPosts[index].subject;
   newCard.className = 'post-card';
+  newCard.id = allPosts[index].id;
   cardParent.insertBefore(newCard, cardFirstChild);
 }
 
