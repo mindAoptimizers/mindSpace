@@ -175,13 +175,14 @@
   margin: auto;
   margin-top: 20px;
   border: 1px solid black;
+  margin-bottom: 50px;
   font: inherit;
   display: grid;
-  grid-template-columns: 500px 260px 200px;
+  grid-template-columns: 500px 300px 160px;
   grid-template-rows: 7.0rem 12rem 4rem;
-  grid-template-areas: "title title title"
+  grid-template-areas: "title title image"
                        "body body image"
-                       "buttons buttons level";
+                       "buttons favorite level";
   border-radius: 10px;
   box-shadow: 10px 10px 10px gray;
 }
@@ -206,10 +207,11 @@
 
 .post-card__level {
   grid-area: level;
-  padding: 13px 40px;
+  padding: 13px 10px;
   justify-self: center;
   align-self: center;
   height: 40px;
+  margin-right: 10px;
   background-color: #23b02f;
   color: white;
   font-weight: 700;
@@ -217,13 +219,13 @@
 
 .post-card__image {
   grid-area: image;
+  justify-self: center;
 }
 
 .post-card__image img {
   margin-top: 15px;
   height: 140px;
-  width: 140px;;
-  margin-right: 10px;
+  width: 140px;
 }
 
 .post-card__body {
@@ -240,24 +242,34 @@
 
 .post-card__buttons {
   grid-area: buttons;
-  padding-top: 10px;
-  justify-content: space-;
+  padding-top: 2px;
+  align-self: center;
+  justify-self: center;
 }
 
-.post-card-button__favorite {
-  border: solid green;
-  margin-top: 10px;
-  margin-left: 20px;
-  width: 100px;
+.post-card__delete {
+  margin-right: 100px;
+  background-color: red;
+}
+
+.post-favorite__div {
+  grid-area: favorite;
+  justify-self: center;
+  align-self: center;
+}
+
+.post-card__favorite {
+  background: white;
+  color: #0e4f1f;
+}
+
+.post-card__favorite-selected {
+  background: #23b02f;
+  color: white;
 }
   
-.post-card-button__favorite:hover {
-  background: #f7f7f7;
-  border: 1px solid #8b8b8b;
-}
-
-.post-card-button__favorite:active {
-  background: #2e2e2e;
-  border: 1px solid black;
+.post-card__favorite:hover,
+.post-card__favorite:active {
+  background: #23b02f;
   color: white;
 }

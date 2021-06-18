@@ -23,8 +23,8 @@ savePostButton.addEventListener('click', addPost);
 modalCancelButton.addEventListener('click', closeModal);
 postDeleteButton.addEventListener('click', deletePost);
 postEditButton.addEventListener('click', editPost);
-postFavoriteButton.addEventListener('click', favoriteClickHandler);
 filterItemsContainer.addEventListener('click', filterCheckedHandler);
+postFavoriteButton.addEventListener('click', favoriteClickHandler);
 
 // Event listener for addPost button to open backdrop & modal
 addPostButton.addEventListener('click', function() {
@@ -45,21 +45,28 @@ function Post(id, title, post, subject, difficulty, favorite, image) {
   allPosts.push(this);
 }
 
-Post.prototype.favoriteToggle = function() {
-  // TODO
-};
-
 // *** Functions ***
 
 function favoriteClickHandler(event) {
-  // TODO
-  if (event.target.textContent !== 'Favorite') {
-    return;
+  // DONE
+  if ((event.target.textContent === 'Favorite') || (event.target.textContent === 'Unfavor')) {
+    const postIndex = event.target.id;
+    console.log(event.target.id);
+    if (allPosts[postIndex].favorite) {
+      allPosts[postIndex].favorite = false;
+      event.target.classList.remove('post-card__favorite-selected');
+      event.target.textContent = 'Favorite';
+    } else {
+      allPosts[postIndex].favorite = true;
+      event.target.classList.add('post-card__favorite-selected');
+      event.target.textContent = 'Unfavor';
+    }
+    saveLocalData();
   }
-  console.log('Favorite clicked');
 }
 
 function closeModal() {
+  // DONE
   postForm.reset();
   modal.classList.remove('open');
   backdrop.classList.remove('open');
@@ -77,11 +84,11 @@ function editPost(event) {
   if (event.target.textContent !== 'Edit') {
     return;
   }
-  console.log('Edit Post clicked');
+  console.log('Edit Post clicked', event.target.id);
 }
 
 function deletePost(event) {
-  // TODO: Delete a post from the allPosts array and upate local storage & render.
+  // DONE: Delete a post from the allPosts array and upate local storage & render.
   if (event.target.textContent !== 'Delete') {
     return;
   }
@@ -105,7 +112,7 @@ function loadLocalData() {
 }
 
 function renderPostsLoop(data) {
-  // loop over the allPosts array and render each card to post-cards DOM element.
+  // DONE loop over the allPosts array and render each card to post-cards DOM element.
   for (let i = 0; i < data.length; i++) {
     renderPostCard(data, i);
   }
@@ -117,7 +124,7 @@ function saveLocalData() {
   // renders all posts again. This to get the updated index numbers after a delete.
   localStorage.setItem('posts', JSON.stringify(allPosts));
   postContainer.innerHTML = '';
-  renderPostsLoop(allPosts);
+  renderPostsLoop(renderPosts());
 }
 
 function buildPosts(event) {
@@ -155,7 +162,7 @@ function buildPosts(event) {
 }
 
 function renderPostCard(data, index) {
-  // TODO
+  // DONE
   let newCard = cardTemplate.cloneNode(true);
   let cardParent = document.querySelector('.post-cards');
   let cardFirstChild = cardParent.firstChild;
@@ -169,6 +176,8 @@ function renderPostCard(data, index) {
   newCard.querySelector('.post-card__delete').id = data[index].id;
   newCard.querySelector('.post-card__edit').id = data[index].id;
   newCard.querySelector('.post-card__favorite').id = data[index].id;
+  data[index].favorite ? newCard.querySelector('.post-card__favorite').classList.add('post-card__favorite-selected') : null ;
+  data[index].favorite ? newCard.querySelector('.post-card__favorite').textContent = 'Unfavor' : null ;
   cardParent.insertBefore(newCard, cardFirstChild);
 }
 
@@ -194,12 +203,14 @@ function filterCheckedHandler(event) {
       }
     }
   }
-  const filteredPosts = allPosts.filter(item => filterSubject.includes(item.subject));
-  console.log('checked ' + event.target.checked + ' targetID ' + event.target.id);
-  console.log(filterSubject);
-  console.log(filteredPosts);
-  postContainer.innerHTML = '';
-  filteredPosts.length ? renderPostsLoop(filteredPosts) : renderPostsLoop(allPosts);
+  renderPostsLoop(renderPosts());
 }
+
+function renderPosts() {
+  const filteredPosts = allPosts.filter(item => filterSubject.includes(item.subject));
+  postContainer.innerHTML = '';
+  return filteredPosts.length ? filteredPosts : allPosts;
+}
+
 // Start site
 loadLocalData();
