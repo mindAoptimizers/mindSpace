@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 // Correct Answers Array
 const answers = ['B', 'A', 'A', 'A', 'A', 'A', 'A', 'B', 'A', 'A'];
 
@@ -19,8 +19,8 @@ quizForm.addEventListener('submit', function (e) {
     }
 
   });
-  console.log(score);
+  scrollTo(0, 0);
   result.querySelector('span').textContent = `${score}%`;
-  //scroll to method??
 
-})
+
+});

@@ -1,0 +1,32 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+.top{
+ text-align: center;
+ font-display: auto;
+ font-size: large;
+ color:aqua;
+ margin: 45px;
+}
+.result{
+  text-align: center;
+  color: aquamarine; 
+  margin-bottom: 10px;
+}
+.quizForm{
+  background-color: antiquewhite;
+  font-size: 20px;
+  padding: 45px;
+
+}
+p{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.text-center{
+  margin-top: 10px;
+}
+
