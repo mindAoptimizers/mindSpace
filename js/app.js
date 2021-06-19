@@ -37,8 +37,6 @@ addPostButton.addEventListener('click', function() {
   backdrop.classList.add('open');
 });
 
-
-
 // Post constructor
 function Post(id, title, post, subject, difficulty, favorite, image) {
   this.id = id;
@@ -111,11 +109,8 @@ function editPost(event) {
 
 function deletePost(event) {
   // DONE: Delete a post from the allPosts array and upate local storage & render.
-  // if (event.target.textContent !== 'Delete') {
-  //   return;
-  // }
   const num = parseInt(event.target.id);
-  let newArray = allPosts.filter(each => each.id !== num);
+  let newArray = allPosts.filter(post => post.id !== num);
   allPosts = newArray;
   saveLocalData();
   closeDeleteModal();
@@ -231,9 +226,12 @@ function filterCheckedHandler(event) {
 }
 
 function renderPosts() {
-  const filteredPosts = allPosts.filter(item => filterSubject.includes(item.subject));
+  if (!filterSubject.length) {
+    return allPosts;
+  }
+  const filteredPosts = allPosts.filter(post => filterSubject.includes(post.subject));
   postContainer.innerHTML = '';
-  return filteredPosts.length ? filteredPosts : allPosts;
+  return filteredPosts;
 }
 
 // Start site
