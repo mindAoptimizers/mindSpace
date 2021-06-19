@@ -15,6 +15,7 @@
   text-align: center;
   color: aquamarine; 
   margin-bottom: 10px;
+  display:none;
 }
 .quizForm{
   background-color: antiquewhite;
@@ -26,7 +27,37 @@ p{
   margin-top: 15px;
   margin-bottom: 15px;
 }
-.text-center{
+.center{
   margin-top: 10px;
 }
+.popup-wrapper{
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.popup{
+  font-family: arial;
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+  margin: 10% auto;
+  padding: 20px;
+  background: white;
+  position: relative;
+  display:block;
+}
+.fail{
+  border: 2px solid green;
+
+}
+.pass{
+  border:2px red ;
+
+}
+
 
