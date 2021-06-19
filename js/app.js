@@ -20,6 +20,7 @@ const postEditButton = document.querySelector('.post-cards');
 const postFavoriteButton = document.querySelector('.post-cards');
 const postContainer = document.querySelector('.post-cards');
 const filterItemsContainer = document.querySelector('.filter-main__items');
+const filterFavoriteSwitch = document.querySelector('.filter-main__favorite');
 
 // set event listeners
 savePostButton.addEventListener('click', addPost);
@@ -30,6 +31,7 @@ filterItemsContainer.addEventListener('click', filterCheckedHandler);
 postFavoriteButton.addEventListener('click', favoriteClickHandler);
 modalDeleteCancelButton.addEventListener('click', closeDeleteModal);
 modalDeleteYesButton.addEventListener('click', deletePost);
+filterFavoriteSwitch.addEventListener('click', filterFavoriteHandler);
 
 // Event listener for addPost button to open backdrop & modal
 addPostButton.addEventListener('click', function() {
@@ -51,6 +53,11 @@ function Post(id, title, post, subject, difficulty, favorite, image) {
 }
 
 // *** Functions ***
+
+function filterFavoriteHandler(event) {
+  event.stopPropagation();
+  console.dir(event.target.checked);
+}
 
 function favoriteClickHandler(event) {
   // DONE
