@@ -20,6 +20,12 @@
   background: white;
 }
 
+.js-logo {
+  z-index: 50;
+  margin-top: 20px;
+  position: fixed;
+  display: flex;
+}
 
 *{
   margin:0;
@@ -30,18 +36,19 @@
 .top{
  text-align: center;
  font-display: auto;
- font-size: large;
- color:aqua;
+ font-size: x-large;
+ color:rgb(69, 101, 29);
  margin: 45px;
 }
+
 .result{
   text-align: center;
-  color: aquamarine; 
+  color: rgb(69, 101, 29);
+  font-size: x-large; 
   margin-bottom: 10px;
-
   display:none;
-
 }
+
 .quizForm{
   background-color: antiquewhite;
   font-size: 20px;
@@ -90,4 +97,21 @@ p{
 
 }
 
+.leaderboard {
+  display: none;
+  color: rgb(69, 101, 29);
+  font-size: x-large;
+  margin: auto;
+  text-align: center;
+  width: 350px;
+  padding: 10px;
+  border: 5px solid rgb(69, 101, 29);
+}
 
+td {
+  width: 180px;
+}
+
+tr {
+  border-bottom: 1px solid rgb(69, 101, 29);
+}
