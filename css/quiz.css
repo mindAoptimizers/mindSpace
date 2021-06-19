@@ -15,6 +15,7 @@
   text-align: center;
   color: aquamarine; 
   margin-bottom: 10px;
+  display:none;
 }
 .quizForm{
   background-color: antiquewhite;
@@ -26,7 +27,7 @@ p{
   margin-top: 15px;
   margin-bottom: 15px;
 }
-.text-center{
+.center{
   margin-top: 10px;
 }
 .popup-wrapper{
@@ -50,4 +51,13 @@ p{
   position: relative;
   display:block;
 }
+.fail{
+  border: 2px solid green;
+
+}
+.pass{
+  border:2px red ;
+
+}
+
 

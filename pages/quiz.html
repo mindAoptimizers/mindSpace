@@ -4,9 +4,10 @@
 <head>
   <title>Resources</title>
   <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="/css/quiz.css">
   <link rel="stylesheet" href="../css/shared.css">
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="/css/quiz.css">
+
   <!-- <script src="js/app.js" defer></script> -->
 </head>
 
@@ -27,8 +28,9 @@
 
     <div class="popup-wrapper">
       <form class="popup">
-        <input type="text" id="username" placeholder="username">
+        <input type="text" name="username" placeholder="username">
         <input class="new" type="submit" value="submit">
+        <div class="feedback"></div>
       </form>
     </div>
 
@@ -37,7 +39,7 @@
       <h1>How smart are you?</h1>
     </div>
     <div class="result">
-      <p>You got <span>0%</span> correct answers </p>
+      <p> <span>0%</span> </p>
     </div>
 
     <form class="quizForm">
@@ -204,7 +206,7 @@
 
 
 
-      <div class="text-center">
+      <div class="center">
         <input type="submit" class="button">
       </div>
     </form>
