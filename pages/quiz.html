@@ -4,9 +4,12 @@
 <head>
   <title>Resources</title>
   <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="/css/quiz.css">
   <link rel="stylesheet" href="../css/shared.css">
+
   <link rel="stylesheet" href="../css/quiz.css">
   <script src="../js/quiz.js" defer></script>
+
 </head>
 
 <body class="quiz">
@@ -24,11 +27,23 @@
   </header>
   <h1 class="quiz-title">Test Your Knowledge</h1>
   <main>
+
+
+    <div class="popup-wrapper">
+      <form class="popup">
+        <input type="text" name="username" placeholder="username">
+        <input class="new" type="submit" value="submit">
+        <div class="feedback"></div>
+      </form>
+    </div>
+
+
+
     <div class="top">
       <h1>How smart are you?</h1>
     </div>
     <div class="result">
-      <p>You got <span>0%</span> correct answers </p>
+      <p> <span>0%</span> </p>
     </div>
 
     <form class="quizForm">
@@ -195,14 +210,14 @@
 
 
 
-      <div class="text-center">
+      <div class="center">
         <input type="submit" class="button">
       </div>
     </form>
 
 
   </main>
-  <!-- <script src="/mindSpace/js/quiz.js"></script> -->
+
 </body>
 
 </html>

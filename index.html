@@ -38,6 +38,13 @@
         <button class="modal__action" type="button" form="post-form">Save</button>
       </div>
     </div>
+    <div class='modal__delete'>
+      <h1 class="modal__title">Delete Post?</h1>
+      <div class="modal__actions">
+        <button class="modal__action modal__action--negative" type="button">Cancel</button>
+        <button class="modal__action" type="button">Yes, Delete</button>
+      </div>
+    </div>
     <header class="header-main">
         <a href="./index.html" class="header-main__brand">
         <img src="../img/brain-logo2-transparent.png" alt="">mindSpace
@@ -85,6 +92,22 @@
               <input type="checkbox" id="mongodb">
               <img src="img/mongodb-logo.png" alt="MongoDB Logo">
             </label>
+          </li>
+          <li class="filter-main__switches">
+            <div>
+              <label>Favorite</label>
+              <input class="filter-main__favorite" type="checkbox" id="switch"/>
+              <label class="switch" for="switch"></label>
+              <!-- <label>Beginner</label>
+              <input class="filter-main__beginner" type="checkbox" id="switch"/>
+              <label class="switch" for="switch"></label>
+              <label>Intermediate</label>
+              <input class="filter-main__intermediate" type="checkbox" id="switch"/>
+              <label class="switch" for="switch"></label>
+              <label>Advance</label>
+              <input class="filter-main__advance" type="checkbox" id="switch"/>
+              <label class="switch" for="switch"></label> -->
+            </div>
           </li>
         </ul>
       </section>
