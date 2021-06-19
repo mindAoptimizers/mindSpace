@@ -85,6 +85,7 @@ function closeModal() {
   postForm.reset();
   modal.classList.remove('open');
   backdrop.classList.remove('open');
+  savePostButton.mode = 'add';
 }
 
 function deletePostHandler(event) {
@@ -132,6 +133,9 @@ function deletePost(event) {
   const num = parseInt(event.target.id);
   let newArray = allPosts.filter(post => post.id !== num);
   allPosts = newArray;
+  for(let i = 0; i < allPosts.length; i++){
+    allPosts[i].id = i;
+  }
   saveLocalData();
   closeDeleteModal();
 }
@@ -152,7 +156,6 @@ function loadLocalData() {
 function renderPostsLoop(data) {
   // DONE loop over the allPosts array and render each card to post-cards DOM element.
   for (let i = 0; i < data.length; i++) {
-    data[i].id = i;
     renderPostCard(data, i);
   }
 }
