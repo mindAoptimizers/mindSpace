@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: "Comfortaa", sans-serif;
+  margin: 0;
+  display: grid;
+  grid-template-rows: 3.5rem 8rem auto;
+  grid-template-areas: "header"
+                       "filter"
+                       "main";
+  height: 100%;
+  color: black;
+}
+
+main {
+  grid-area: main;
+}
+
+.backdrop {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.header-main {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #87bedc;
+  padding: 0.5rem 1rem;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  height: 3.5rem;
+  justify-content: space-between;
+}
+
+.header-main__brand {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+  font-size: 2rem;
+  margin-top: 3px;
+}
+
+.header-main__brand img {
+  height: 3.5rem;
+  vertical-align: middle;
+  margin-right: 1rem;
+}
+
+.header-nav {
+  display: flex;
+}
+
+.header-nav__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+}
+
+.header-nav__item {
+  margin: 0 1rem;
+}
+
+.header-nav__item a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  padding: 0.2rem 0;
+}
+
+.header-nav__item a:hover,
+.header-nav__item a:active {
+  color: #ff1b68;
+  font-weight: 700;
+  border-bottom: 5px solid #ff1b68;
+}
+
+.header-nav__item--cta a{
+  color: white;
+  background: #ff1b68;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.header-nav__item--cta a:hover,
+.header-nav__item--cta a:active {
+  color: #ff1b68;
+  background: lightpink;
+  border: none;
+  font-weight: 700;
+}
+
+.button {
+  background: #0e4f1f;
+  color: white;
+  font: inherit;
+  border: 1.5px solid #0e4f1f;
+  padding: 0.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100px;
+}
+
+.button:hover,
+.button:active {
+  background: white;
+  color: #0e4f1f;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button[disabled] {
+  cursor: not-allowed;
+  border: #a1a1a1;
+  background: #ccc;
+  color: #a1a1a1;
+} 
+
+.open {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+
+
+
+

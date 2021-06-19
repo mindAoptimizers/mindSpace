@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>mindSpace</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/app.js" defer></script>
+  </head>
+  <body>
+    <div class='backdrop'></div>
+    <div class='modal'>
+      <h1 class="modal__title">Blog Post Entry</h1>
+      <form class="post-form" id="post-form">
+        <label for="title">Title</label>
+        <input id="title" type="text" name="title" required>
+        <label for="post">Blog Post</label>
+        <textarea name="post" id="post" cols="40" rows="15" placeholder="Enter your blog post" name="post" required></textarea>
+        <label for="subject">Subject</label>
+        <select id="subject" name="subject">
+            <option value="js">JavaScript</option>
+            <option value="html">HTML 5</option>
+            <option value="css">CSS 3</option>
+            <option value="react">React</option>
+            <option value="mongodb">MongoDB</option>
+        </select>
+        <label for="difficulty">Difficulty</label>
+        <select id="difficulty" name="difficulty">
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advance">Advance</option>
+        </select>
+        <label for="favorite">Favorite</label>
+        <input type="checkbox" id="favorite" name="favorite" value="true">
+      </form>
+      <div class="modal__actions">
+        <button class="modal__action modal__action--negative" type="submit">Cancel</button>
+        <button class="modal__action" type="button" form="post-form">Save</button>
+      </div>
+    </div>
+    <div class='modal__delete'>
+      <h1 class="modal__title">Delete Post?</h1>
+      <div class="modal__actions">
+        <button class="modal__action modal__action--negative" type="button">Cancel</button>
+        <button class="modal__action" type="button">Yes, Delete</button>
+      </div>
+    </div>
+    <header class="header-main">
+        <a href="./index.html" class="header-main__brand">
+        <img src="../img/brain-logo2-transparent.png" alt="">mindSpace
+      </a>
+      <nav class="header-nav">
+        <ul class="header-nav__items">
+          <li class="header-nav__item"><a href="./index.html">Home</a></li>
+          <li class="header-nav__item"><a href="pages/aboutus.html">About Us</a></li>
+          <li class="header-nav__item"><a href="pages/quiz.html">Quiz</a></li>
+          <li class="header-nav__item header-nav__item--cta">
+            <a href="#">Add Post</a>
+        </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="filter-main">
+        <ul class="filter-main__items">
+          <li class="filter-main__item">
+            <label for="js">
+              <input id="js" type="checkbox">
+              <img src="img/JS_logo.png" alt="JavaScript Logo">
+            </label>
+          </li>
+          <li class="filter-main__item">
+            <label for="html">
+              <input id="html" type="checkbox">
+              <img src="img/html_logo2.png" alt="HTML Logo">
+            </label>
+          </li>
+          <li class="filter-main__item">
+            <label for="css">
+              <input id="css" type="checkbox">
+              <img src="img/css_logo.png" alt="CSS Logo">
+            </label>
+          </li>
+          <li class="filter-main__item">
+            <label for="react">
+              <input type="checkbox" id="react">
+              <img src="img/react_logo.png" alt="React Logo">
+            </label>
+          </li>
+          <li class="filter-main__item">
+            <label for="mongodb">
+              <input type="checkbox" id="mongodb">
+              <img src="img/mongodb-logo.png" alt="MongoDB Logo">
+            </label>
+          </li>
+          <li class="filter-main__switches">
+            <div>
+              <label>Favorite</label>
+              <input class="filter-main__favorite" type="checkbox" id="switch"/>
+              <label class="switch" for="switch"></label>
+              <!-- <label>Beginner</label>
+              <input class="filter-main__beginner" type="checkbox" id="switch"/>
+              <label class="switch" for="switch"></label>
+              <label>Intermediate</label>
+              <input class="filter-main__intermediate" type="checkbox" id="switch"/>
+              <label class="switch" for="switch"></label>
+              <label>Advance</label>
+              <input class="filter-main__advance" type="checkbox" id="switch"/>
+              <label class="switch" for="switch"></label> -->
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section class="post-template__card">
+        <div class="post-card__title">
+          <h1></h1>
+          <h2></h2>
+        </div>
+        <div class="post-card__level">
+          <h2></h2>
+        </div>
+        <div class="post-card__body">
+          <p></p>
+        </div>
+        <div class="post-card__image">
+          <img src="img/html_logo2.png">
+        </div>
+        <div class="post-card__buttons">
+          <button class="button post-card__delete" type="button">Delete</button>
+          <button class="button post-card__edit" type="button">Edit</button>
+        </div>
+        <div class="post-favorite__div">
+          <button class="post-card__favorite button" type="button">Favorite</button>
+        </div>
+      </section>
+      <section class="post-cards">
+      </section>
+    </main>
+  </body>
+</html>
