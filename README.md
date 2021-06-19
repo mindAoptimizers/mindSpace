@@ -10,8 +10,9 @@
 **Creators:**
 Connor Boyce, Willem Jacobs, Alex Payne, David Waiganjo
 
-Project Prep #4:
-[User Sotries](https://docs.google.com/document/d/12WgVk5jdTMW7lnwsdDd4-5J7oNBglc0ReG8hjAPpAeI/edit?usp=sharing)
+**Project Prep #4:**
+[User Stories](https://docs.google.com/document/d/12WgVk5jdTMW7lnwsdDd4-5J7oNBglc0ReG8hjAPpAeI/edit?usp=sharing)
+
 
 Domain Modeling
 [Link for Domain Model](https://app.diagrams.net/?src=about#G1VEQq2yUZCTVvXpZ0Fxf_2_0f84wufsNz)
@@ -21,3 +22,10 @@ Domain Modeling
 ### Tuesday
 **06/15/2021**
 - Connor Boyce --> 
+
+**Domain Modeling**
+[Link for Domain Model](https://app.diagrams.net/?src=about#G1VEQq2yUZCTVvXpZ0Fxf_2_0f84wufsNz)
+
+**Wire Frame**
+[Wire Frame](https://www.figma.com/file/XPGQTQvHAbcN2x9AztZiKR/mindSpace?node-id=0%3A1)
+
