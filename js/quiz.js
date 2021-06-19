@@ -6,6 +6,7 @@ const result = document.querySelector('.result');
 const quizForm = document.querySelector('.quizForm');
 const submitForm = document.querySelector('.new');
 const popup = document.querySelector('.popup-wrapper');
+
 const newtry = document.querySelector('.popup');
 const feedback = document.querySelector('.feedback');
 
@@ -18,6 +19,7 @@ submitForm.addEventListener('click', function (e) {
   } else {
     feedback.textContent = 'username should be between 1 and 8 characters';
   }
+
 
 
 });
@@ -37,6 +39,7 @@ quizForm.addEventListener('submit', function (e) {
 
   });
   scrollTo(0, 0);
+
   result.style.display = 'block';
   if (score <= 50) {
     result.querySelector('span').textContent = ` Your score is ${score}% ,you might need to look at`;

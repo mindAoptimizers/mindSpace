@@ -4,8 +4,6 @@
 let filterSubject = [];
 let allPosts = [];
 
-// const journalEntryLog = document.querySelector(''); 
-
 // JS to HTML links
 const cardTemplate = document.querySelector('.post-template__card');
 const addPostButton = document.querySelector('.header-nav__item--cta');
@@ -13,14 +11,27 @@ const backdrop = document.querySelector('.backdrop');
 const modal = document.querySelector('.modal');
 const savePostButton = document.querySelector('.modal__actions button:nth-child(2)');
 const modalCancelButton = document.querySelector('.modal__action--negative');
+const modalDelete = document.querySelector('.modal__delete');
+const modalDeleteCancelButton = modalDelete.querySelector('.modal__action--negative');
+const modalDeleteYesButton = modalDelete.querySelector('.modal__actions button:nth-child(2)');
 const postForm = document.querySelector('.post-form');
-
-// temp hook to DOM *** TO DELETE AFTER *** used for testing no post message
-// const postCard = document.querySelector('main h1');
+const postDeleteButton = document.querySelector('.post-cards');
+const postEditButton = document.querySelector('.post-cards');
+const postFavoriteButton = document.querySelector('.post-cards');
+const postContainer = document.querySelector('.post-cards');
+const filterItemsContainer = document.querySelector('.filter-main__items');
+const filterFavoriteSwitch = document.querySelector('.filter-main__favorite');
 
 // set event listeners
 savePostButton.addEventListener('click', addPost);
 modalCancelButton.addEventListener('click', closeModal);
+postDeleteButton.addEventListener('click', deletePostHandler);
+postEditButton.addEventListener('click', editPost);
+filterItemsContainer.addEventListener('click', filterCheckedHandler);
+postFavoriteButton.addEventListener('click', favoriteClickHandler);
+modalDeleteCancelButton.addEventListener('click', closeDeleteModal);
+modalDeleteYesButton.addEventListener('click', deletePost);
+filterFavoriteSwitch.addEventListener('click', filterFavoriteHandler);
 
 // Event listener for addPost button to open backdrop & modal
 addPostButton.addEventListener('click', function() {
@@ -41,64 +52,107 @@ function Post(id, title, post, subject, difficulty, favorite, image) {
   allPosts.push(this);
 }
 
-// toggle favorite method
-Post.prototype.favoriteToggle = function() {
-
-// TODO
-
-};
-
 // *** Functions ***
 
+function filterFavoriteHandler(event) {
+  event.stopPropagation();
+  console.dir(event.target.checked);
+}
+
+function favoriteClickHandler(event) {
+  // DONE
+  if ((event.target.textContent === 'Favorite') || (event.target.textContent === 'Unfavor')) {
+    const postIndex = event.target.id;
+    if (allPosts[postIndex].favorite) {
+      allPosts[postIndex].favorite = false;
+      event.target.classList.remove('post-card__favorite-selected');
+      event.target.textContent = 'Favorite';
+    } else {
+      allPosts[postIndex].favorite = true;
+      event.target.classList.add('post-card__favorite-selected');
+      event.target.textContent = 'Unfavor';
+    }
+    saveLocalData();
+  }
+}
+
 function closeModal() {
+  // DONE
   postForm.reset();
   modal.classList.remove('open');
   backdrop.classList.remove('open');
 }
 
-// add post method
+function deletePostHandler(event) {
+  //TODO
+  if (event.target.textContent !== 'Delete') {
+    return;
+  }
+  modalDelete.classList.add('open');
+  backdrop.classList.add('open');
+  modalDeleteYesButton.id = event.target.id;
+}
+
+function closeDeleteModal() {
+  //TODO
+  modalDelete.classList.remove('open');
+  backdrop.classList.remove('open');
+}
+
 function addPost(event) {
   // DONE: build new post object and add to allPosts array.
   buildPosts(event);
   // DONE: close the modal dialog and the backdrop & reset the form.
   closeModal();
-  // TODO: Render the new post at the top of the list.
-  renderPostCard(allPosts.length - 1);
 }
 
-// edit post method
-function editPost() {
+function editPost(event) {
   // TODO: Allows a post to be edited and will update the local storage/DOM when saved. Cancel no change.
+  if (event.target.textContent !== 'Edit') {
+    return;
+  }
+  console.log('Edit Post clicked', event.target.id);
 }
 
-// delete post method
-function deletePost() {
-  // TODO: Delete a post from the allPosts array and upate local storage & render.
+function deletePost(event) {
+  // DONE: Delete a post from the allPosts array and upate local storage & render.
+  const num = parseInt(event.target.id);
+  let newArray = allPosts.filter(post => post.id !== num);
+  allPosts = newArray;
+  saveLocalData();
+  closeDeleteModal();
 }
 
-// load local storage data
 function loadLocalData() {
   // DONE: check if local storage exists and if does, load & send the objects to the allPosts array.
-  // render the posts. If no local storage display a no posts message
+  // render the posts using the renderPostsLoop. If no local storage display a no posts message
   let postsData = JSON.parse(localStorage.getItem('posts'));
   if (postsData) {
     allPosts = postsData;
-    for (let i = 0; i < allPosts.length; i ++) {
-      renderPostCard(i);
-    }
+    renderPostsLoop(allPosts);
   } else {
     console.log('no data found in local storage');
     renderNoPosts();
   }
 }
 
-// save posts to local storage
+function renderPostsLoop(data) {
+  // DONE loop over the allPosts array and render each card to post-cards DOM element.
+  for (let i = 0; i < data.length; i++) {
+    data[i].id = i;
+    renderPostCard(data, i);
+  }
+}
+
 function saveLocalData() {
   // DONE: to save allPosts array to local storage.
+  // clears the inner HTML for post-cards (all posts).
+  // renders all posts again. This to get the updated index numbers after a delete.
+  postContainer.innerHTML = '';
+  renderPostsLoop(renderPosts());
   localStorage.setItem('posts', JSON.stringify(allPosts));
 }
 
-// build post object from add/edit modal and populate array
 function buildPosts(event) {
   // DONE: build new object from user data and validate.
   // TODO: vaidation needs to be added.
@@ -123,7 +177,7 @@ function buildPosts(event) {
   case 'react':
     image = 'img/react_logo.png';
     break;
-  case 'mongo':
+  case 'mongodb':
     image = 'img/mongodb-logo.png';
     break;
   default:
@@ -133,19 +187,23 @@ function buildPosts(event) {
   saveLocalData();
 }
 
-function renderPostCard(index) {
-  // TODO
+function renderPostCard(data, index) {
+  // DONE
   let newCard = cardTemplate.cloneNode(true);
   let cardParent = document.querySelector('.post-cards');
   let cardFirstChild = cardParent.firstChild;
-  newCard.querySelector('.post-card__title h1').textContent = allPosts[index].title;
-  newCard.querySelector('.post-card__title h2').textContent = allPosts[index].postDate;
-  newCard.querySelector('.post-card__level h2').textContent = allPosts[index].difficulty;
-  newCard.querySelector('.post-card__body p').textContent = allPosts[index].post;
-  newCard.querySelector('.post-card__image img').src = allPosts[index].image;
-  newCard.querySelector('.post-card__image img').alt = allPosts[index].subject;
+  newCard.querySelector('.post-card__title h1').textContent = data[index].title;
+  newCard.querySelector('.post-card__title h2').textContent = data[index].postDate;
+  newCard.querySelector('.post-card__level h2').textContent = data[index].difficulty;
+  newCard.querySelector('.post-card__body p').textContent = data[index].post;
+  newCard.querySelector('.post-card__image img').src = data[index].image;
+  newCard.querySelector('.post-card__image img').alt = data[index].subject;
   newCard.className = 'post-card';
-  newCard.id = allPosts[index].id;
+  newCard.querySelector('.post-card__delete').id = data[index].id;
+  newCard.querySelector('.post-card__edit').id = data[index].id;
+  newCard.querySelector('.post-card__favorite').id = data[index].id;
+  data[index].favorite ? newCard.querySelector('.post-card__favorite').classList.add('post-card__favorite-selected') : null ;
+  data[index].favorite ? newCard.querySelector('.post-card__favorite').textContent = 'Unfavor' : null ;
   cardParent.insertBefore(newCard, cardFirstChild);
 }
 
@@ -155,6 +213,33 @@ function renderNoPosts() {
 }
 
 // filter & render
+function filterCheckedHandler(event) {
+  if (event.target.tagName !== 'INPUT') {
+    return;
+  }
+  if (event.target.checked) {
+    filterSubject.push(event.target.id);
+  } else if (!event.target.checked) {
+    let i = 0;
+    while ( i < filterSubject.length) {
+      if (filterSubject[i] === event.target.id) {
+        filterSubject.splice(i, 1);
+      } else {
+        i++;
+      }
+    }
+  }
+  renderPostsLoop(renderPosts());
+}
+
+function renderPosts() {
+  if (!filterSubject.length) {
+    return allPosts;
+  }
+  const filteredPosts = allPosts.filter(post => filterSubject.includes(post.subject));
+  postContainer.innerHTML = '';
+  return filteredPosts;
+}
 
 // Start site
 loadLocalData();

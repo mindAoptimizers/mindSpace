@@ -1,3 +1,26 @@
+
+.quiz {
+  grid-template-rows: 3.5rem 3.5rem auto;
+}
+
+.quiz-title {
+  grid-area: filter;
+  position: fixed;
+  display: flex;
+  top: 3.5rem;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  margin: auto;
+  font-size: 2rem;
+  font-weight: 700;
+  align-items: center;
+  height: 3.5rem;
+  justify-content: space-evenly;
+  background: white;
+}
+
+
 *{
   margin:0;
   padding:0;
@@ -15,7 +38,9 @@
   text-align: center;
   color: aquamarine; 
   margin-bottom: 10px;
+
   display:none;
+
 }
 .quizForm{
   background-color: antiquewhite;
@@ -27,9 +52,13 @@ p{
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
+.text-center{}
+  
 .center{
   margin-top: 10px;
 }
+
 .popup-wrapper{
   background: rgba(0,0,0,0.5);
   position: fixed;
@@ -51,6 +80,7 @@ p{
   position: relative;
   display:block;
 }
+  
 .fail{
   border: 2px solid green;
 

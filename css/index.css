@@ -1,19 +1,4 @@
 .filter-main {
-  display: flex;
-}
-
-.filter-main__items {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-}
-
-.filter-main__item {
-  margin: 0 .5rem;
-}
-
-.filter-main {
   grid-area: filter;
   width: 100%;
   position: fixed;
@@ -26,6 +11,18 @@
   height: 8rem;
   justify-content: left;
   background: white;
+}
+
+.filter-main__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin: auto;
+  display: flex;
+}
+
+.filter-main__item {
+  margin: 0 .5rem;
 }
 
 .filter-main__item input {
@@ -65,6 +62,23 @@
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
+.modal__delete {
+  position: fixed;
+  display: none;
+  /* opacity: 0;
+  transition: opacity 500ms; */
+  float: left;
+  z-index: 200;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  width: 20rem;
+  background: white;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
 .modal__title {
   text-align: center;
   margin: 0 0 1rem 0;
@@ -81,9 +95,13 @@
   font: inherit;
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  width: 94px;
+  width: 130px;
   cursor: pointer;
   margin-left: 50px;
+}
+
+.modal__delete .modal__action {
+  margin: 5px 0 0 10px;
 }
 
 .modal__action:hover,
@@ -154,17 +172,19 @@
   appearance: none;
 }
 
-.post-form input[type="checkbox"]:checked {
+.post-form input[type="checkbox"]:checked{
   background: #2ddf5c;
   border: #0e4f1f;
+  content: '✔';
+  color: black;
 }
 
-.post-form input.invalid,
+/* .post-form input.invalid,
 .post-form textarea.invalid,
 .post-form :invalid {
   border-color: red !important;
   background: #faacac;
-}
+} */
 
 .post-template__card {
   display: none;
@@ -178,13 +198,14 @@
   margin: auto;
   margin-top: 20px;
   border: 1px solid black;
+  margin-bottom: 50px;
   font: inherit;
   display: grid;
   grid-template-columns: 500px 300px 160px;
   grid-template-rows: 7.0rem 12rem 4rem;
   grid-template-areas: "title title image"
                        "body body image"
-                       "buttons buttons level";
+                       "buttons favorite level";
   border-radius: 10px;
   box-shadow: 10px 10px 10px gray;
 }
@@ -209,12 +230,13 @@
 
 .post-card__level {
   grid-area: level;
-  padding: 13px 40px;
-  justify-self: end;
-  border: 1px solid black;
+  padding: 13px 10px;
+  justify-self: center;
+  align-self: center;
+  text-align: center;
   height: 40px;
-  margin-right: 20px;
-  border-radius: 10px;
+  width: 130px;
+  margin-right: 10px;
   background-color: #23b02f;
   color: white;
   font-weight: 700;
@@ -222,13 +244,13 @@
 
 .post-card__image {
   grid-area: image;
+  justify-self: center;
 }
 
 .post-card__image img {
   margin-top: 15px;
   height: 140px;
-  width: 140px;;
-  margin-right: 10px;
+  width: 140px;
 }
 
 .post-card__body {
@@ -245,99 +267,84 @@
 
 .post-card__buttons {
   grid-area: buttons;
-  padding-top: 10px;
+  padding-top: 2px;
+  align-self: center;
+  justify-self: flex-start;
+  margin-left: 30px;
 }
 
-/* .post-card img {
-  width: 100px;
-  height: 100px;
-  margin-left: 20px;
-  margin-top: 10px;
-} */
-
-.about_me_card {
-  /* Add shadows to create the "card" effect */
-  background-color: white;
-  background-image: linear-gradient(to right, #00d2ff,#3a7bd5);
-  padding: 10px 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  /* width: 75%; */
-  overflow: auto;
-  margin: 50px 50px;
+.post-card__delete {
+  margin-right: 20px;
+  background-color: red;
 }
 
-/* On mouse-over, add a deeper shadow */
-.about_me_card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
+.post-favorite__div {
+  grid-area: favorite;
+  justify-self: center;
+  align-self: center;
 }
 
-/* Add some padding inside the card container */
-.about_me_container {
-  margin: auto;
-  padding: 10px;
-  padding-top: 75px;
-  overflow: auto;
-  text-align: center;
+.post-card__favorite {
+  background: white;
+  color: #0e4f1f;
 }
 
-.profile_pic {
-  float: left;
-  width: 300px;
-  padding: 10px;
-}
-
-.post-card-button__edit {
-  border: solid green;
-  width: 100px;
-  margin-left: 20px;
-}
-
-.post-card-button__edit:hover {
-  background: #f7f7f7;
-  border: 1px solid #8b8b8b;
-}
-
-.post-card-button__edit:active {
-  background: #2e2e2e;
-  border: 1px solid black;
+.post-card__favorite-selected {
+  background: #23b02f;
   color: white;
-  }
-
-.post-card-button__delete {
-  border: solid green;
-  margin-top: 10px;
-  margin-left: 20px;
-  width: 100px;
-}
-
-.post-card-button__delete:hover {
-  background: #f7f7f7;
-  border: 1px solid #8b8b8b;
-}
-
-.post-card-button__delete:active {
-  background: #2e2e2e;
-  border: 1px solid black;
-  color: white;
-  }
-
-.post-card-button__favorite {
-  border: solid green;
-  margin-top: 10px;
-  margin-left: 20px;
-  width: 100px;
 }
   
-.post-card-button__favorite:hover {
-  background: #f7f7f7;
-  border: 1px solid #8b8b8b;
+.post-card__favorite:hover,
+.post-card__favorite:active {
+  background: #23b02f;
+  color: white;
 }
 
-.post-card-button__favorite:active {
-  background: #2e2e2e;
-  border: 1px solid black;
-  color: white;
+.filter-main__switches {
+}
+
+.filter-main__switches label {
+	/* font-size: 1rem; */
+}
+
+.filter-main__switches input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.filter-main__switches .switch {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 40px;
+	height: 22px;
+	background: grey;
+	display: inline-block;
+	border-radius: 100px;
+	position: relative;
+}
+
+.filter-main__switches label:after {
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 15px;
+	height: 15px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+.filter-main__switches input:checked + label {
+	background: #bada55;
+}
+
+.filter-main__switches input:checked + label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+.filter-main__switches label:active:after {
+	width: 15px;
 }

@@ -116,6 +116,7 @@ main {
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
+  width: 100px;
 }
 
 .button:hover,
