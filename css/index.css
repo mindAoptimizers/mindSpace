@@ -172,17 +172,19 @@
   appearance: none;
 }
 
-.post-form input[type="checkbox"]:checked {
+.post-form input[type="checkbox"]:checked{
   background: #2ddf5c;
   border: #0e4f1f;
+  content: '✔';
+  color: black;
 }
 
-.post-form input.invalid,
+/* .post-form input.invalid,
 .post-form textarea.invalid,
 .post-form :invalid {
   border-color: red !important;
   background: #faacac;
-}
+} */
 
 .post-template__card {
   display: none;
@@ -231,7 +233,9 @@
   padding: 13px 10px;
   justify-self: center;
   align-self: center;
+  text-align: center;
   height: 40px;
+  width: 130px;
   margin-right: 10px;
   background-color: #23b02f;
   color: white;
@@ -294,4 +298,53 @@
 .post-card__favorite:active {
   background: #23b02f;
   color: white;
+}
+
+.filter-main__switches {
+}
+
+.filter-main__switches label {
+	/* font-size: 1rem; */
+}
+
+.filter-main__switches input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.filter-main__switches .switch {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 40px;
+	height: 22px;
+	background: grey;
+	display: inline-block;
+	border-radius: 100px;
+	position: relative;
+}
+
+.filter-main__switches label:after {
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	width: 15px;
+	height: 15px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+.filter-main__switches input:checked + label {
+	background: #bada55;
+}
+
+.filter-main__switches input:checked + label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+.filter-main__switches label:active:after {
+	width: 15px;
 }
