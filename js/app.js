@@ -83,7 +83,10 @@ function editPost(event) {
   if (event.target.textContent !== 'Edit') {
     return;
   }
-  console.log('Edit Post clicked', event.target.id);
+  let postsData = JSON.parse(localStorage.getItem('posts'));
+  let post = postsData(event.target.post);
+  console.log(post);
+  // let foundValue = postsData.filter(obj=>obj.name==='0');
 }
 
 function deletePost(event) {
