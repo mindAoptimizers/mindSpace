@@ -84,7 +84,6 @@ function editPost(event) {
     return;
   }
   let postsData = JSON.parse(localStorage.getItem('posts'));
-  let post = postsData(event.target.post);
   console.log(post);
   // let foundValue = postsData.filter(obj=>obj.name==='0');
 }
