@@ -62,6 +62,23 @@
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
+.modal__delete {
+  position: fixed;
+  display: none;
+  /* opacity: 0;
+  transition: opacity 500ms; */
+  float: left;
+  z-index: 200;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  width: 20rem;
+  background: white;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
 .modal__title {
   text-align: center;
   margin: 0 0 1rem 0;
@@ -78,9 +95,13 @@
   font: inherit;
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  width: 94px;
+  width: 130px;
   cursor: pointer;
   margin-left: 50px;
+}
+
+.modal__delete .modal__action {
+  margin: 5px 0 0 10px;
 }
 
 .modal__action:hover,
@@ -244,11 +265,12 @@
   grid-area: buttons;
   padding-top: 2px;
   align-self: center;
-  justify-self: center;
+  justify-self: flex-start;
+  margin-left: 30px;
 }
 
 .post-card__delete {
-  margin-right: 100px;
+  margin-right: 20px;
   background-color: red;
 }
 

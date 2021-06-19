@@ -11,6 +11,9 @@ const backdrop = document.querySelector('.backdrop');
 const modal = document.querySelector('.modal');
 const savePostButton = document.querySelector('.modal__actions button:nth-child(2)');
 const modalCancelButton = document.querySelector('.modal__action--negative');
+const modalDelete = document.querySelector('.modal__delete');
+const modalDeleteCancelButton = modalDelete.querySelector('.modal__action--negative');
+const modalDeleteYesButton = modalDelete.querySelector('.modal__actions button:nth-child(2)');
 const postForm = document.querySelector('.post-form');
 const postDeleteButton = document.querySelector('.post-cards');
 const postEditButton = document.querySelector('.post-cards');
@@ -21,16 +24,20 @@ const filterItemsContainer = document.querySelector('.filter-main__items');
 // set event listeners
 savePostButton.addEventListener('click', addPost);
 modalCancelButton.addEventListener('click', closeModal);
-postDeleteButton.addEventListener('click', deletePost);
+postDeleteButton.addEventListener('click', deletePostHandler);
 postEditButton.addEventListener('click', editPost);
 filterItemsContainer.addEventListener('click', filterCheckedHandler);
 postFavoriteButton.addEventListener('click', favoriteClickHandler);
+modalDeleteCancelButton.addEventListener('click', closeDeleteModal);
+modalDeleteYesButton.addEventListener('click', deletePost);
 
 // Event listener for addPost button to open backdrop & modal
 addPostButton.addEventListener('click', function() {
   modal.classList.add('open');
   backdrop.classList.add('open');
 });
+
+
 
 // Post constructor
 function Post(id, title, post, subject, difficulty, favorite, image) {
@@ -71,6 +78,22 @@ function closeModal() {
   backdrop.classList.remove('open');
 }
 
+function deletePostHandler(event) {
+  //TODO
+  if (event.target.textContent !== 'Delete') {
+    return;
+  }
+  modalDelete.classList.add('open');
+  backdrop.classList.add('open');
+  modalDeleteYesButton.id = event.target.id;
+}
+
+function closeDeleteModal() {
+  //TODO
+  modalDelete.classList.remove('open');
+  backdrop.classList.remove('open');
+}
+
 function addPost(event) {
   // DONE: build new post object and add to allPosts array.
   buildPosts(event);
@@ -88,13 +111,14 @@ function editPost(event) {
 
 function deletePost(event) {
   // DONE: Delete a post from the allPosts array and upate local storage & render.
-  if (event.target.textContent !== 'Delete') {
-    return;
-  }
-  let num = parseInt(event.target.id);
+  // if (event.target.textContent !== 'Delete') {
+  //   return;
+  // }
+  const num = parseInt(event.target.id);
   let newArray = allPosts.filter(each => each.id !== num);
   allPosts = newArray;
   saveLocalData();
+  closeDeleteModal();
 }
 
 function loadLocalData() {
@@ -113,6 +137,7 @@ function loadLocalData() {
 function renderPostsLoop(data) {
   // DONE loop over the allPosts array and render each card to post-cards DOM element.
   for (let i = 0; i < data.length; i++) {
+    data[i].id = i;
     renderPostCard(data, i);
   }
 }
@@ -121,9 +146,9 @@ function saveLocalData() {
   // DONE: to save allPosts array to local storage.
   // clears the inner HTML for post-cards (all posts).
   // renders all posts again. This to get the updated index numbers after a delete.
-  localStorage.setItem('posts', JSON.stringify(allPosts));
   postContainer.innerHTML = '';
   renderPostsLoop(renderPosts());
+  localStorage.setItem('posts', JSON.stringify(allPosts));
 }
 
 function buildPosts(event) {
