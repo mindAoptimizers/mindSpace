@@ -38,10 +38,47 @@
 /* Add some padding inside the card container */
 .about_me_container {
   margin: auto;
-  padding: 10px;
-  padding-top: 75px;
+  padding-left: 10px;
   overflow: auto;
   text-align: center;
+}
+
+.about_me_title {
+  display: inline-block;
+  padding: 15px 50px 15px 50px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background: bisque;
+  margin-bottom: 20px;
+  width: 400px;
+  margin: auto;
+  text-align: center;
+}
+
+.about_me_title h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.about_me_title h2 {
+  font-size: 1.3rem;
+}
+
+.about_me_bio {
+  display: inline-block;
+  padding: 15px 50px 15px 50px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background: bisque;
+  margin-top: 20px;
+  list-style: outside;
+}
+
+.about_me_bio li {
+  line-height: 20px;
+  text-align: left;
+  padding-top: 10px;
 }
 
 .profile_pic {
