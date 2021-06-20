@@ -42,7 +42,6 @@ addPostButton.addEventListener('click', openModal);
 
 // Validation items
 const inputTitle = document.querySelector('.post-form #title');
-inputTitle.setCustomValidity('A Title is required for the post.');
 inputTitle.addEventListener('input', function() {
   if (inputTitle.validity.valueMissing) {
     inputTitle.setCustomValidity('A Title is required for the post.');
@@ -52,7 +51,6 @@ inputTitle.addEventListener('input', function() {
 });
 
 const inputPost = document.querySelector('.post-form #post');
-inputPost.setCustomValidity('A body entry for the post is required.');
 inputPost.addEventListener('input', function() {
   if (inputPost.validity.valueMissing) {
     inputPost.setCustomValidity('A body entry for the post is required.');
@@ -127,10 +125,6 @@ function closeDeleteModal() {
 }
 
 function addPost(event) {
-  console.dir(event);
-  // if (!postForm.validity.valid) {
-  //   return;
-  // }
   // DONE: build new post object and add to allPosts array.
   buildPosts(event);
   // DONE: close the modal dialog and the backdrop & reset the form.
@@ -197,7 +191,7 @@ function saveLocalData() {
 
 function buildPosts(event) {
   // DONE: build new object from user data and validate.
-  // TODO: validation needs to be added.
+  // DONE: validation needs to be added.
   event.preventDefault();
   const title = postForm.title.value;
   const post = postForm.post.value;
