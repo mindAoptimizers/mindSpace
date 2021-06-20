@@ -9,11 +9,11 @@ const cardTemplate = document.querySelector('.post-template__card');
 const addPostButton = document.querySelector('.header-nav__item--cta');
 const backdrop = document.querySelector('.backdrop');
 const modal = document.querySelector('.modal');
-const savePostButton = document.querySelector('.modal__actions button:nth-child(2)');
-const modalCancelButton = document.querySelector('.modal__action--negative');
+const savePostButton = document.querySelector('#save-post');
+const modalCancelButton = document.querySelector('#cancel-post');
 const modalDelete = document.querySelector('.modal__delete');
-const modalDeleteCancelButton = modalDelete.querySelector('.modal__action--negative');
-const modalDeleteYesButton = modalDelete.querySelector('.modal__actions button:nth-child(2)');
+const modalDeleteCancelButton = modalDelete.querySelector('#delete-cancel');
+const modalDeleteYesButton = modalDelete.querySelector('#delete-yes');
 const postForm = document.querySelector('.post-form');
 const postDeleteButton = document.querySelector('.post-cards');
 const postEditButton = document.querySelector('.post-cards');
@@ -23,7 +23,8 @@ const filterItemsContainer = document.querySelector('.filter-main__items');
 const filterFavoriteSwitch = document.querySelector('.filter-main__favorite');
 
 // set event listeners
-savePostButton.addEventListener('click', addPost);
+// savePostButton.addEventListener('submit', addPost);
+postForm.addEventListener('submit', addPost);
 modalCancelButton.addEventListener('click', closeModal);
 postDeleteButton.addEventListener('click', deletePostHandler);
 postEditButton.addEventListener('click', editPost);
@@ -33,10 +34,34 @@ modalDeleteCancelButton.addEventListener('click', closeDeleteModal);
 modalDeleteYesButton.addEventListener('click', deletePost);
 filterFavoriteSwitch.addEventListener('click', filterFavoriteHandler);
 
+// set some needed values to DOM objects to reuse code
+savePostButton.mode = 'add';
+
 // Event listener for addPost button to open backdrop & modal
 addPostButton.addEventListener('click', function() {
   modal.classList.add('open');
   backdrop.classList.add('open');
+});
+
+// Validation items
+const inputTitle = document.querySelector('.post-form #title');
+inputTitle.setCustomValidity('A Title is required for the post.');
+inputTitle.addEventListener('input', function() {
+  if (inputTitle.validity.valueMissing) {
+    inputTitle.setCustomValidity('A Title is required for the post.');
+  } else {
+    inputTitle.setCustomValidity('');
+  }
+});
+
+const inputPost = document.querySelector('.post-form #post');
+inputPost.setCustomValidity('A body entry for the post is required.');
+inputPost.addEventListener('input', function() {
+  if (inputPost.validity.valueMissing) {
+    inputPost.setCustomValidity('A body entry for the post is required.');
+  } else {
+    inputPost.setCustomValidity('');
+  }
 });
 
 // Post constructor
@@ -100,6 +125,10 @@ function closeDeleteModal() {
 }
 
 function addPost(event) {
+  console.dir(event);
+  // if (!postForm.validity.valid) {
+  //   return;
+  // }
   // DONE: build new post object and add to allPosts array.
   buildPosts(event);
   // DONE: close the modal dialog and the backdrop & reset the form.
@@ -111,7 +140,14 @@ function editPost(event) {
   if (event.target.textContent !== 'Edit') {
     return;
   }
-  console.log('Edit Post clicked', event.target.id);
+  console.log(savePostButton.mode);
+  const id = +event.target.id;
+  console.log('From Edit: ', id);
+  savePostButton.id = id;
+  savePostButton.mode = 'edit';
+  console.log(savePostButton.id);
+  console.log(savePostButton.mode);
+
 }
 
 function deletePost(event) {
@@ -119,6 +155,9 @@ function deletePost(event) {
   const num = parseInt(event.target.id);
   let newArray = allPosts.filter(post => post.id !== num);
   allPosts = newArray;
+  for (let i = 0; i < allPosts.length; i++) {
+    allPosts[i].id = i;
+  }
   saveLocalData();
   closeDeleteModal();
 }
@@ -139,7 +178,7 @@ function loadLocalData() {
 function renderPostsLoop(data) {
   // DONE loop over the allPosts array and render each card to post-cards DOM element.
   for (let i = 0; i < data.length; i++) {
-    data[i].id = i;
+    // data[i].id = i;
     renderPostCard(data, i);
   }
 }
@@ -162,7 +201,6 @@ function buildPosts(event) {
   const subject = postForm.subject.value;
   const difficulty = postForm.difficulty.value;
   const favorite = postForm.favorite.checked ? true : false;
-  const idNumber = allPosts.length;
   let image;
   switch (subject) {
   case 'html':
@@ -183,7 +221,12 @@ function buildPosts(event) {
   default:
     image = 'img/no-logo.png';
   }
-  new Post(idNumber, title, post, subject, difficulty, favorite, image);
+  if (savePostButton.mode === 'add') {
+    const idNumber = allPosts.length;
+    new Post(idNumber, title, post, subject, difficulty, favorite, image);
+  } else {
+    console.log(savePostButton.mode, savePostButton.id);
+  }
   saveLocalData();
 }
 
@@ -234,6 +277,7 @@ function filterCheckedHandler(event) {
 
 function renderPosts() {
   if (!filterSubject.length) {
+    postContainer.innerHTML = '';
     return allPosts;
   }
   const filteredPosts = allPosts.filter(post => filterSubject.includes(post.subject));

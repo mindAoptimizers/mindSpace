@@ -47,5 +47,7 @@
 .profile_pic {
   float: left;
   width: 300px;
-  padding: 10px;
+  height: 300px;
+  object-fit: fill;
+  border: 2px solid black;
 }
