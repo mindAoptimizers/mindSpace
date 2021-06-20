@@ -1,6 +1,6 @@
 'use strict';
 
-// Global variabls
+// Global variables
 let filterSubject = [];
 let allPosts = [];
 
@@ -34,14 +34,11 @@ modalDeleteCancelButton.addEventListener('click', closeDeleteModal);
 modalDeleteYesButton.addEventListener('click', deletePost);
 filterFavoriteSwitch.addEventListener('click', filterFavoriteHandler);
 
-// set some needed values to DOM objects to reuse code
+// Set some object values to reuse code
 savePostButton.mode = 'add';
 
 // Event listener for addPost button to open backdrop & modal
-addPostButton.addEventListener('click', function() {
-  modal.classList.add('open');
-  backdrop.classList.add('open');
-});
+addPostButton.addEventListener('click', openModal);
 
 // Validation items
 const inputTitle = document.querySelector('.post-form #title');
@@ -78,6 +75,10 @@ function Post(id, title, post, subject, difficulty, favorite, image) {
 }
 
 // *** Functions ***
+function openModal() {
+  modal.classList.add('open');
+  backdrop.classList.add('open');
+}
 
 function filterFavoriteHandler(event) {
   event.stopPropagation();
@@ -106,10 +107,11 @@ function closeModal() {
   postForm.reset();
   modal.classList.remove('open');
   backdrop.classList.remove('open');
+  savePostButton.mode = 'add';
 }
 
 function deletePostHandler(event) {
-  //TODO
+  //DONE
   if (event.target.textContent !== 'Delete') {
     return;
   }
@@ -119,7 +121,7 @@ function deletePostHandler(event) {
 }
 
 function closeDeleteModal() {
-  //TODO
+  //DONE
   modalDelete.classList.remove('open');
   backdrop.classList.remove('open');
 }
@@ -136,18 +138,20 @@ function addPost(event) {
 }
 
 function editPost(event) {
-  // TODO: Allows a post to be edited and will update the local storage/DOM when saved. Cancel no change.
+  // DONE: Allows a post to be edited and will update the local storage/DOM when saved. Cancel no change.
   if (event.target.textContent !== 'Edit') {
     return;
   }
-  console.log(savePostButton.mode);
   const id = +event.target.id;
-  console.log('From Edit: ', id);
   savePostButton.id = id;
   savePostButton.mode = 'edit';
-  console.log(savePostButton.id);
-  console.log(savePostButton.mode);
-
+  openModal();
+  postForm.previousElementSibling.textContent = 'Edit Blog Post';
+  postForm.title.value = allPosts[id].title;
+  postForm.post.value = allPosts[id].post;
+  postForm.subject.value = allPosts[id].subject;
+  postForm.difficulty.value = allPosts[id].difficulty;
+  postForm.favorite.checked = allPosts[id].favorite;
 }
 
 function deletePost(event) {
@@ -155,7 +159,7 @@ function deletePost(event) {
   const num = parseInt(event.target.id);
   let newArray = allPosts.filter(post => post.id !== num);
   allPosts = newArray;
-  for (let i = 0; i < allPosts.length; i++) {
+  for(let i = 0; i < allPosts.length; i++){
     allPosts[i].id = i;
   }
   saveLocalData();
@@ -178,7 +182,6 @@ function loadLocalData() {
 function renderPostsLoop(data) {
   // DONE loop over the allPosts array and render each card to post-cards DOM element.
   for (let i = 0; i < data.length; i++) {
-    // data[i].id = i;
     renderPostCard(data, i);
   }
 }
@@ -194,7 +197,7 @@ function saveLocalData() {
 
 function buildPosts(event) {
   // DONE: build new object from user data and validate.
-  // TODO: vaidation needs to be added.
+  // TODO: validation needs to be added.
   event.preventDefault();
   const title = postForm.title.value;
   const post = postForm.post.value;
@@ -221,11 +224,20 @@ function buildPosts(event) {
   default:
     image = 'img/no-logo.png';
   }
-  if (savePostButton.mode === 'add') {
+  if(savePostButton.mode === 'add'){
     const idNumber = allPosts.length;
     new Post(idNumber, title, post, subject, difficulty, favorite, image);
   } else {
-    console.log(savePostButton.mode, savePostButton.id);
+    const idNumber = savePostButton.id;
+    allPosts[idNumber].title = title;
+    allPosts[idNumber].post = post;
+    allPosts[idNumber].subject = subject;
+    allPosts[idNumber].difficulty = difficulty;
+    allPosts[idNumber].favorite = favorite;
+    allPosts[idNumber].image = image;
+    allPosts[idNumber].postDate = Date() + ' - Edited';
+    savePostButton.mode = 'add';
+    savePostButton.id = '';
   }
   saveLocalData();
 }
@@ -257,6 +269,7 @@ function renderNoPosts() {
 
 // filter & render
 function filterCheckedHandler(event) {
+  // DONE 
   if (event.target.tagName !== 'INPUT') {
     return;
   }
@@ -276,6 +289,7 @@ function filterCheckedHandler(event) {
 }
 
 function renderPosts() {
+  // DONE
   if (!filterSubject.length) {
     postContainer.innerHTML = '';
     return allPosts;
