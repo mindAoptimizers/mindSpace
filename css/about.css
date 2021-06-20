@@ -48,8 +48,9 @@
   padding: 15px 50px 15px 50px;
   border: 1px solid black;
   border-radius: 10px;
-  background: bisque;
+  background: rgba(228, 224, 219, 0.2);
   margin-bottom: 20px;
+  color: white;
   width: 400px;
   margin: auto;
   text-align: center;
@@ -70,13 +71,15 @@
   padding: 15px 50px 15px 50px;
   border: 1px solid black;
   border-radius: 10px;
-  background: bisque;
+  background: rgba(228, 224, 219, 0.2);
   margin-top: 20px;
   list-style: outside;
+  color: rgba(255, 255, 255, 0.913);
 }
 
 .about_me_bio li {
-  line-height: 20px;
+  line-height: 22px;
+  font-size: 18px;
   text-align: left;
   padding-top: 10px;
 }
