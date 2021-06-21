@@ -82,8 +82,8 @@ function openModal() {
 // check for favorite switch being on/off then ensure posts are filtered
 function filterFavoriteHandler(event) {
   event.stopPropagation();
-  const favoriteSwitch = event.target.checked;
-  renderPostsLoop(renderPosts(favoriteSwitch));
+  const favorite = event.target.checked;
+  renderPostsLoop(renderPosts(favorite));
 }
 
 // Function to toggle a post as favorite
@@ -195,7 +195,8 @@ function saveLocalData() {
   // clears the inner HTML for post-cards (all posts).
   // renders all posts again. This to get the updated index numbers after a delete.
   postContainer.innerHTML = '';
-  renderPostsLoop(renderPosts());
+  const favorite = filterFavoriteSwitch.checked;
+  renderPostsLoop(renderPosts(favorite));
   localStorage.setItem('posts', JSON.stringify(allPosts));
 }
 
@@ -275,9 +276,11 @@ function renderNoPosts() {
 // filter & render
 function filterCheckedHandler(event) {
   // DONE
+  event.stopPropagation();
   if (event.target.tagName !== 'INPUT') {
     return;
   }
+  const favorite = filterFavoriteSwitch.checked;
   if (event.target.checked) {
     filterSubject.push(event.target.id);
   } else if (!event.target.checked) {
@@ -290,7 +293,7 @@ function filterCheckedHandler(event) {
       }
     }
   }
-  renderPostsLoop(renderPosts());
+  renderPostsLoop(renderPosts(favorite));
 }
 
 function renderPosts(favorite = false) {
@@ -298,7 +301,7 @@ function renderPosts(favorite = false) {
   if (!filterSubject.length && !favorite) {
     postContainer.innerHTML = '';
     return allPosts;
-  } else if (favorite && !filterSubject.length) {
+  } else if (!filterSubject.length && favorite) {
     postContainer.innerHTML = '';
     let filteredPosts = allPosts.filter(post => post.favorite);
     return filteredPosts;
