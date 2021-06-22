@@ -46,10 +46,8 @@
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   display: none;
-  /* opacity: 0;
-  transition: opacity 500ms; */
   float: left;
   z-index: 200;
   left: 50%;
