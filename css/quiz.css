@@ -38,7 +38,7 @@
  font-display: auto;
  font-size: x-large;
  color:rgb(69, 101, 29);
- margin: 45px;
+ margin: 10px;
 }
 
 .result{
@@ -81,11 +81,11 @@ p{
   text-align: center;
   width: 100%;
   max-width: 300px;
-  margin: 10% auto;
+  margin: 150px auto;
   padding: 20px;
   background: white;
   position: relative;
-  display:block;
+  display: block;
 }
   
 .fail{
