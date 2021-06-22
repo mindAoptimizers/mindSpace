@@ -145,6 +145,11 @@
   width: 270px;
 }
 
+.modal__summary .modal__title {
+  font-weight: 700;
+  font-size: 1.5rem
+}
+
 .modal-summary__detail tr {
   line-height: 25px;
   display: block;
