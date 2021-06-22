@@ -9,6 +9,10 @@ const cardTemplate = document.querySelector('.post-template__card');
 const addPostButton = document.querySelector('.header-nav__item--cta');
 const backdrop = document.querySelector('.backdrop');
 const modal = document.querySelector('.modal');
+const logoImage = document.querySelector('.header-main__brand');
+const modalSummary = document.querySelector('.modal__summary');
+const modalSummaryDetail = document.querySelector('.modal-summary__detail');
+const modalSummaryButton = document.querySelector('#summary-close');
 const savePostButton = document.querySelector('#save-post');
 const modalCancelButton = document.querySelector('#cancel-post');
 const modalDelete = document.querySelector('.modal__delete');
@@ -25,6 +29,8 @@ const filterFavoriteSwitch = document.querySelector('.filter-main__favorite');
 // set event listeners
 // savePostButton.addEventListener('submit', addPost);
 postForm.addEventListener('submit', addPost);
+logoImage.addEventListener('click', displaySummary);
+modalSummaryButton.addEventListener('click', modalSummaryClose);
 modalCancelButton.addEventListener('click', closeModal);
 postDeleteButton.addEventListener('click', deletePostHandler);
 postEditButton.addEventListener('click', editPost);
@@ -123,6 +129,173 @@ function deletePostHandler(event) {
   modalDelete.classList.add('open');
   backdrop.classList.add('open');
   modalDeleteYesButton.id = event.target.id;
+}
+
+function displaySummary() {
+  modalSummary.classList.add('open');
+  backdrop.classList.add('open');
+  getSummaryInfo();
+}
+
+function modalSummaryClose() {
+  modalSummaryDetail.innerHTML = '';
+  modalSummary.classList.remove('open');
+  backdrop.classList.remove('open');
+}
+
+function getSummaryInfo() {
+  const totals = {
+    js: 0,
+    html: 0,
+    css: 0,
+    react: 0,
+    mongo: 0,
+    beginner: 0,
+    intermediate: 0,
+    advance: 0,
+    favorite: 0,
+    totalPosts: 0
+  };
+  for (let i = 0; i < allPosts.length; i++) {
+    if (allPosts[i].favorite) {
+      totals.favorite++;
+    }
+    if (allPosts[i].difficulty === 'Beginner') {
+      totals.beginner++;
+    }
+    if (allPosts[i].difficulty === 'Intermediate') {
+      totals.intermediate++;
+    }
+    if (allPosts[i].difficulty === 'Advance') {
+      totals.advance++;
+    }
+    switch (allPosts[i].subject) {
+    case 'js' :
+      totals.js ++;
+      break;
+    case 'html' :
+      totals.html ++;
+      break;
+    case 'css' :
+      totals.css ++;
+      break;
+    case 'react' :
+      totals.react ++;
+      break;
+    case 'mongodb' :
+      totals.mongo ++;
+      break;
+    default :
+        //
+    }
+  }
+  totals.totalPosts = allPosts.length;
+  renderSummary(totals);
+}
+
+function renderSummary(totals) {
+  // TODO
+  const summaryTable = document.createElement('tb');
+  let summaryTableRow = document.createElement('tr');
+  let summaryTableCellLabel = document.createElement('td');
+  let summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'Total Posts';
+  summaryTableCellData.textContent = totals.totalPosts;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'JavaScript';
+  summaryTableCellData.textContent = totals.js;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'HTML';
+  summaryTableCellData.textContent = totals.html;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'CSS';
+  summaryTableCellData.textContent = totals.css;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'React';
+  summaryTableCellData.textContent = totals.react;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'MongoDB';
+  summaryTableCellData.textContent = totals.mongo;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'Favorites';
+  summaryTableCellData.textContent = totals.favorite;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'Beginner';
+  summaryTableCellData.textContent = totals.beginner;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'Intermediate';
+  summaryTableCellData.textContent = totals.intermediate;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'Advance';
+  summaryTableCellData.textContent = totals.advance;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  modalSummaryDetail.appendChild(summaryTable);
 }
 
 // Handlre to close the delete confirmation modal
