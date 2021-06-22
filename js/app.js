@@ -163,7 +163,7 @@ function deletePost(event) {
   // DONE: Delete a post from the allPosts array and upate local storage & render.
   const num = parseInt(event.target.id);
   let newArray = allPosts.filter(post => post.id !== num);
-  allPosts = newArray;
+  allPosts = [...newArray];
   for(let i = 0; i < allPosts.length; i++){
     allPosts[i].id = i;
   }
@@ -176,7 +176,7 @@ function loadLocalData() {
   // render the posts using the renderPostsLoop. If no local storage display a no posts message
   let postsData = JSON.parse(localStorage.getItem('posts'));
   if (postsData) {
-    allPosts = postsData;
+    allPosts = [...postsData];
     renderPostsLoop(allPosts);
   } else {
     console.log('no data found in local storage');
