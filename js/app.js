@@ -9,11 +9,11 @@ const cardTemplate = document.querySelector('.post-template__card');
 const addPostButton = document.querySelector('.header-nav__item--cta');
 const backdrop = document.querySelector('.backdrop');
 const modal = document.querySelector('.modal');
-const savePostButton = document.querySelector('.modal__actions button:nth-child(2)');
-const modalCancelButton = document.querySelector('.modal__action--negative');
+const savePostButton = document.querySelector('#save-post');
+const modalCancelButton = document.querySelector('#cancel-post');
 const modalDelete = document.querySelector('.modal__delete');
-const modalDeleteCancelButton = modalDelete.querySelector('.modal__action--negative');
-const modalDeleteYesButton = modalDelete.querySelector('.modal__actions button:nth-child(2)');
+const modalDeleteCancelButton = modalDelete.querySelector('#delete-cancel');
+const modalDeleteYesButton = modalDelete.querySelector('#delete-yes');
 const postForm = document.querySelector('.post-form');
 const postDeleteButton = document.querySelector('.post-cards');
 const postEditButton = document.querySelector('.post-cards');
@@ -23,7 +23,8 @@ const filterItemsContainer = document.querySelector('.filter-main__items');
 const filterFavoriteSwitch = document.querySelector('.filter-main__favorite');
 
 // set event listeners
-savePostButton.addEventListener('click', addPost);
+// savePostButton.addEventListener('submit', addPost);
+postForm.addEventListener('submit', addPost);
 modalCancelButton.addEventListener('click', closeModal);
 postDeleteButton.addEventListener('click', deletePostHandler);
 postEditButton.addEventListener('click', editPost);
@@ -38,6 +39,26 @@ savePostButton.mode = 'add';
 
 // Event listener for addPost button to open backdrop & modal
 addPostButton.addEventListener('click', openModal);
+
+// Validation check for post title on the input element
+const inputTitle = document.querySelector('.post-form #title');
+inputTitle.addEventListener('input', function() {
+  if (inputTitle.validity.valueMissing) {
+    inputTitle.setCustomValidity('A Title is required for the post.');
+  } else {
+    inputTitle.setCustomValidity('');
+  }
+});
+
+// Validation check for post body on the textarea element
+const inputPost = document.querySelector('.post-form #post');
+inputPost.addEventListener('input', function() {
+  if (inputPost.validity.valueMissing) {
+    inputPost.setCustomValidity('A body entry for the post is required.');
+  } else {
+    inputPost.setCustomValidity('');
+  }
+});
 
 // Post constructor
 function Post(id, title, post, subject, difficulty, favorite, image) {
@@ -58,14 +79,17 @@ function openModal() {
   backdrop.classList.add('open');
 }
 
+// check for favorite switch being on/off then ensure posts are filtered
 function filterFavoriteHandler(event) {
   event.stopPropagation();
-  console.dir(event.target.checked);
+  const favorite = event.target.checked;
+  renderPostsLoop(renderPosts(favorite));
 }
 
+// Function to toggle a post as favorite
 function favoriteClickHandler(event) {
   // DONE
-  if ((event.target.textContent === 'Favorite') || (event.target.textContent === 'Unfavor')) {
+  if ((event.target.textContent === 'Favorite') || (event.target.textContent === 'Un-Favor')) {
     const postIndex = event.target.id;
     if (allPosts[postIndex].favorite) {
       allPosts[postIndex].favorite = false;
@@ -74,12 +98,13 @@ function favoriteClickHandler(event) {
     } else {
       allPosts[postIndex].favorite = true;
       event.target.classList.add('post-card__favorite-selected');
-      event.target.textContent = 'Unfavor';
+      event.target.textContent = 'Un-Favor';
     }
     saveLocalData();
   }
 }
 
+// Closes the main add post/edit post modal
 function closeModal() {
   // DONE
   postForm.reset();
@@ -88,6 +113,7 @@ function closeModal() {
   savePostButton.mode = 'add';
 }
 
+// Handler for the delete confirmation modal to open
 function deletePostHandler(event) {
   //DONE
   if (event.target.textContent !== 'Delete') {
@@ -98,12 +124,14 @@ function deletePostHandler(event) {
   modalDeleteYesButton.id = event.target.id;
 }
 
+// Handlre to close the delete confirmation modal
 function closeDeleteModal() {
   //DONE
   modalDelete.classList.remove('open');
   backdrop.classList.remove('open');
 }
 
+// function to add new posts and execute other functions
 function addPost(event) {
   // DONE: build new post object and add to allPosts array.
   buildPosts(event);
@@ -111,6 +139,7 @@ function addPost(event) {
   closeModal();
 }
 
+// function to edit a post
 function editPost(event) {
   // DONE: Allows a post to be edited and will update the local storage/DOM when saved. Cancel no change.
   if (event.target.textContent !== 'Edit') {
@@ -128,6 +157,7 @@ function editPost(event) {
   postForm.favorite.checked = allPosts[id].favorite;
 }
 
+// function to delete a post
 function deletePost(event) {
   // DONE: Delete a post from the allPosts array and upate local storage & render.
   const num = parseInt(event.target.id);
@@ -165,13 +195,14 @@ function saveLocalData() {
   // clears the inner HTML for post-cards (all posts).
   // renders all posts again. This to get the updated index numbers after a delete.
   postContainer.innerHTML = '';
-  renderPostsLoop(renderPosts());
+  const favorite = filterFavoriteSwitch.checked;
+  renderPostsLoop(renderPosts(favorite));
   localStorage.setItem('posts', JSON.stringify(allPosts));
 }
 
 function buildPosts(event) {
   // DONE: build new object from user data and validate.
-  // TODO: validation needs to be added.
+  // DONE: validation needs to be added.
   event.preventDefault();
   const title = postForm.title.value;
   const post = postForm.post.value;
@@ -215,7 +246,8 @@ function buildPosts(event) {
   }
   saveLocalData();
 }
-
+// function to render the post cards to main screen. This uses a template that is in the HTML as
+// the source and copies it, populates the needed textContent, sets other values in event objects.
 function renderPostCard(data, index) {
   // DONE
   let newCard = cardTemplate.cloneNode(true);
@@ -232,7 +264,7 @@ function renderPostCard(data, index) {
   newCard.querySelector('.post-card__edit').id = data[index].id;
   newCard.querySelector('.post-card__favorite').id = data[index].id;
   data[index].favorite ? newCard.querySelector('.post-card__favorite').classList.add('post-card__favorite-selected') : null ;
-  data[index].favorite ? newCard.querySelector('.post-card__favorite').textContent = 'Unfavor' : null ;
+  data[index].favorite ? newCard.querySelector('.post-card__favorite').textContent = 'Un-Favor' : null ;
   cardParent.insertBefore(newCard, cardFirstChild);
 }
 
@@ -243,10 +275,12 @@ function renderNoPosts() {
 
 // filter & render
 function filterCheckedHandler(event) {
-  // DONE 
+  // DONE
+  event.stopPropagation();
   if (event.target.tagName !== 'INPUT') {
     return;
   }
+  const favorite = filterFavoriteSwitch.checked;
   if (event.target.checked) {
     filterSubject.push(event.target.id);
   } else if (!event.target.checked) {
@@ -259,16 +293,23 @@ function filterCheckedHandler(event) {
       }
     }
   }
-  renderPostsLoop(renderPosts());
+  renderPostsLoop(renderPosts(favorite));
 }
 
-function renderPosts() {
+function renderPosts(favorite = false) {
   // DONE
-  if (!filterSubject.length) {
+  if (!filterSubject.length && !favorite) {
     postContainer.innerHTML = '';
     return allPosts;
+  } else if (!filterSubject.length && favorite) {
+    postContainer.innerHTML = '';
+    let filteredPosts = allPosts.filter(post => post.favorite);
+    return filteredPosts;
   }
-  const filteredPosts = allPosts.filter(post => filterSubject.includes(post.subject));
+  let filteredPosts = allPosts.filter(post => filterSubject.includes(post.subject));
+  if (favorite) {
+    filteredPosts = filteredPosts.filter(post => post.favorite);
+  }
   postContainer.innerHTML = '';
   return filteredPosts;
 }

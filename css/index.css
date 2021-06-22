@@ -46,10 +46,8 @@
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   display: none;
-  /* opacity: 0;
-  transition: opacity 500ms; */
   float: left;
   z-index: 200;
   left: 50%;
@@ -151,14 +149,16 @@
 }
 
 .post-form input:not([type="checkbox"]),
-.post-form select {
+.post-form select,
+.post-form textarea {
   border: 1px solid #ccc;
   padding: 0.2rem 0.5rem;
   font: inherit;
 }
 
 .post-form input:focus,
-.post-form textarea:focus {
+.post-form textarea:focus,
+.post-form select:focus {
   outline: none;
   background: #d8f3df;
   border-color: #2ddf5c;
@@ -167,24 +167,25 @@
 .post-form input[type="checkbox"] {
   border: 1px solid #ccc;
   background: white;
-  width: 1rem;
-  height: 1rem;
-  appearance: none;
+  margin: 3px 3px 3px 0;
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
-.post-form input[type="checkbox"]:checked{
-  background: #2ddf5c;
-  border: #0e4f1f;
-  content: '✔';
-  color: black;
+.post-form input:invalid,
+.post-form textarea:invalid {
+  border: 2px solid red;
 }
 
-/* .post-form input.invalid,
-.post-form textarea.invalid,
-.post-form :invalid {
-  border-color: red !important;
-  background: #faacac;
-} */
+.post-form input:invalid:required,
+.post-form textarea:invalid:required {
+  background-image: linear-gradient(to right, pink, lightgreen)
+}
+
+.post-form input:valid, 
+.post-form textarea:valid {
+  border: 2px solid #2ddf5c;
+}
 
 .post-template__card {
   display: none;
