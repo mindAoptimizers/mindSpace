@@ -108,6 +108,7 @@ function favoriteClickHandler(event) {
 function closeModal() {
   // DONE
   postForm.reset();
+  postForm.previousElementSibling.textContent = 'Blog Post Entry';
   modal.classList.remove('open');
   backdrop.classList.remove('open');
   savePostButton.mode = 'add';
