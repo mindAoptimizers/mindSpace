@@ -178,9 +178,6 @@ function loadLocalData() {
   if (postsData) {
     allPosts = [...postsData];
     renderPostsLoop(allPosts);
-  } else {
-    console.log('no data found in local storage');
-    renderNoPosts();
   }
 }
 
@@ -269,11 +266,6 @@ function renderPostCard(data, index) {
   cardParent.insertBefore(newCard, cardFirstChild);
 }
 
-function renderNoPosts() {
-  // TODO: display a no posts message to screen
-  // postCard.textContent = 'No posts found in local storage';
-}
-
 // filter & render
 function filterCheckedHandler(event) {
   // DONE
@@ -297,7 +289,7 @@ function filterCheckedHandler(event) {
   renderPostsLoop(renderPosts(favorite));
 }
 
-function renderPosts(favorite = false) {
+function renderPosts(favorite) {
   // DONE
   if (!filterSubject.length && !favorite) {
     postContainer.innerHTML = '';
