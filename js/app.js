@@ -81,11 +81,12 @@ function Post(id, title, post, subject, difficulty, favorite, image) {
 
 // *** Functions ***
 function openModal() {
+  // DONE: opens the modal.
   modal.classList.add('open');
   backdrop.classList.add('open');
 }
 
-// check for favorite switch being on/off then ensure posts are filtered
+// DONE: check for favorite switch being on/off then ensure posts are filtered
 function filterFavoriteHandler(event) {
   event.stopPropagation();
   const favorite = event.target.checked;
@@ -132,18 +133,21 @@ function deletePostHandler(event) {
 }
 
 function displaySummary() {
+  // DONE: Opens the modal summary and runs getSummaryInfo funciton.
   modalSummary.classList.add('open');
   backdrop.classList.add('open');
   getSummaryInfo();
 }
 
 function modalSummaryClose() {
+  // DONE: closes the summary modal when done close is clicked.
   modalSummaryDetail.innerHTML = '';
   modalSummary.classList.remove('open');
   backdrop.classList.remove('open');
 }
 
 function getSummaryInfo() {
+  // DONE: gets the totals needed for the summary modal
   const totals = {
     js: 0,
     html: 0,
@@ -194,7 +198,7 @@ function getSummaryInfo() {
 }
 
 function renderSummary(totals) {
-  // TODO
+  // DONE: creates the table in the modal for the summary info
   const summaryTable = document.createElement('tb');
   let summaryTableRow = document.createElement('tr');
   let summaryTableCellLabel = document.createElement('td');
@@ -441,7 +445,9 @@ function renderPostCard(data, index) {
 
 // filter & render
 function filterCheckedHandler(event) {
-  // DONE
+  // DONE checks what filters are set active on the subjects then. Stores them in a temp array or removes
+  // a subject when turned off. At end will call renderPostsLoop to render all the posts with the filtered data
+  // that is received from the renderPosts function.
   event.stopPropagation();
   if (event.target.tagName !== 'INPUT') {
     return;
@@ -463,7 +469,7 @@ function filterCheckedHandler(event) {
 }
 
 function renderPosts(favorite) {
-  // DONE
+  // DONE The main function that handles the filtering, if needed and returns this data.
   if (!filterSubject.length && !favorite) {
     postContainer.innerHTML = '';
     return allPosts;
