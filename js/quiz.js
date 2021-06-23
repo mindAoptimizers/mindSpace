@@ -10,6 +10,14 @@ const result = document.querySelector('.result');
 const quizForm = document.querySelector('.quizForm');
 const submitForm = document.querySelector('.new');
 const popup = document.querySelector('.popup-wrapper');
+const leaderBoardButton = document.querySelector('.header-nav__leader');
+
+leaderBoardButton.addEventListener('click', function() {
+  document.getElementById('quiz-form').style.display = 'none';
+  popup.style.display = 'none';
+  document.querySelector('.leaderboard').style.display = 'block';
+  displayLeaderboard();
+});
 
 const newtry = document.querySelector('.popup');
 const feedback = document.querySelector('.feedback');
