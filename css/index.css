@@ -63,8 +63,21 @@
 .modal__delete {
   position: fixed;
   display: none;
-  /* opacity: 0;
-  transition: opacity 500ms; */
+  float: left;
+  z-index: 200;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  width: 20rem;
+  background: white;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.modal__summary {
+  position: fixed;
+  display: none;
   float: left;
   z-index: 200;
   left: 50%;
@@ -84,6 +97,10 @@
 
 .modal__actions {
   text-align: center;
+}
+
+#summary-close {
+  margin-left: 0;
 }
 
 .modal__action {
@@ -118,6 +135,42 @@
   background: lightpink;
   border-color: lightpink;
   color: #ff1b68;
+}
+
+.modal-summary__detail {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  width: 270px;
+}
+
+.modal__summary .modal__title {
+  font-weight: 700;
+  font-size: 1.5rem
+}
+
+.modal-summary__detail tr {
+  line-height: 25px;
+  display: block;
+}
+
+.modal-summary__detail td {
+  text-align: left;
+  width: 120px;
+  padding: 3px 0;
+}
+
+.modal-summary__detail td:nth-child(1) {
+  padding-left: 5px;
+}
+
+.modal-summary__detail td:nth-child(2) {
+  text-align: center;
+}
+
+.modal-summary__detail tr:nth-child(odd) {
+  background: #89eb91;
 }
 
 .post-form {
@@ -299,13 +352,6 @@
 .post-card__favorite:active {
   background: #23b02f;
   color: white;
-}
-
-.filter-main__switches {
-}
-
-.filter-main__switches label {
-	/* font-size: 1rem; */
 }
 
 .filter-main__switches input[type=checkbox]{

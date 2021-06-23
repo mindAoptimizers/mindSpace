@@ -9,6 +9,10 @@ const cardTemplate = document.querySelector('.post-template__card');
 const addPostButton = document.querySelector('.header-nav__item--cta');
 const backdrop = document.querySelector('.backdrop');
 const modal = document.querySelector('.modal');
+const logoImage = document.querySelector('.header-main__brand');
+const modalSummary = document.querySelector('.modal__summary');
+const modalSummaryDetail = document.querySelector('.modal-summary__detail');
+const modalSummaryButton = document.querySelector('#summary-close');
 const savePostButton = document.querySelector('#save-post');
 const modalCancelButton = document.querySelector('#cancel-post');
 const modalDelete = document.querySelector('.modal__delete');
@@ -25,6 +29,8 @@ const filterFavoriteSwitch = document.querySelector('.filter-main__favorite');
 // set event listeners
 // savePostButton.addEventListener('submit', addPost);
 postForm.addEventListener('submit', addPost);
+logoImage.addEventListener('click', displaySummary);
+modalSummaryButton.addEventListener('click', modalSummaryClose);
 modalCancelButton.addEventListener('click', closeModal);
 postDeleteButton.addEventListener('click', deletePostHandler);
 postEditButton.addEventListener('click', editPost);
@@ -75,11 +81,12 @@ function Post(id, title, post, subject, difficulty, favorite, image) {
 
 // *** Functions ***
 function openModal() {
+  // DONE: opens the modal.
   modal.classList.add('open');
   backdrop.classList.add('open');
 }
 
-// check for favorite switch being on/off then ensure posts are filtered
+// DONE: check for favorite switch being on/off then ensure posts are filtered
 function filterFavoriteHandler(event) {
   event.stopPropagation();
   const favorite = event.target.checked;
@@ -125,6 +132,176 @@ function deletePostHandler(event) {
   modalDeleteYesButton.id = event.target.id;
 }
 
+function displaySummary() {
+  // DONE: Opens the modal summary and runs getSummaryInfo funciton.
+  modalSummary.classList.add('open');
+  backdrop.classList.add('open');
+  getSummaryInfo();
+}
+
+function modalSummaryClose() {
+  // DONE: closes the summary modal when done close is clicked.
+  modalSummaryDetail.innerHTML = '';
+  modalSummary.classList.remove('open');
+  backdrop.classList.remove('open');
+}
+
+function getSummaryInfo() {
+  // DONE: gets the totals needed for the summary modal
+  const totals = {
+    js: 0,
+    html: 0,
+    css: 0,
+    react: 0,
+    mongo: 0,
+    beginner: 0,
+    intermediate: 0,
+    advance: 0,
+    favorite: 0,
+    totalPosts: 0
+  };
+  for (let i = 0; i < allPosts.length; i++) {
+    if (allPosts[i].favorite) {
+      totals.favorite++;
+    }
+    if (allPosts[i].difficulty === 'Beginner') {
+      totals.beginner++;
+    }
+    if (allPosts[i].difficulty === 'Intermediate') {
+      totals.intermediate++;
+    }
+    if (allPosts[i].difficulty === 'Advance') {
+      totals.advance++;
+    }
+    switch (allPosts[i].subject) {
+    case 'js' :
+      totals.js ++;
+      break;
+    case 'html' :
+      totals.html ++;
+      break;
+    case 'css' :
+      totals.css ++;
+      break;
+    case 'react' :
+      totals.react ++;
+      break;
+    case 'mongodb' :
+      totals.mongo ++;
+      break;
+    default :
+        //
+    }
+  }
+  totals.totalPosts = allPosts.length;
+  renderSummary(totals);
+}
+
+function renderSummary(totals) {
+  // DONE: creates the table in the modal for the summary info
+  const summaryTable = document.createElement('tb');
+  let summaryTableRow = document.createElement('tr');
+  let summaryTableCellLabel = document.createElement('td');
+  let summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'Total Posts';
+  summaryTableCellData.textContent = totals.totalPosts;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'JavaScript';
+  summaryTableCellData.textContent = totals.js;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'HTML';
+  summaryTableCellData.textContent = totals.html;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'CSS';
+  summaryTableCellData.textContent = totals.css;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'React';
+  summaryTableCellData.textContent = totals.react;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'MongoDB';
+  summaryTableCellData.textContent = totals.mongo;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'Favorites';
+  summaryTableCellData.textContent = totals.favorite;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'Beginner';
+  summaryTableCellData.textContent = totals.beginner;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'Intermediate';
+  summaryTableCellData.textContent = totals.intermediate;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  summaryTableRow = document.createElement('tr');
+  summaryTableCellLabel = document.createElement('td');
+  summaryTableCellData = document.createElement('td');
+  summaryTableCellLabel.textContent = 'Advance';
+  summaryTableCellData.textContent = totals.advance;
+  summaryTableRow.appendChild(summaryTableCellLabel);
+  summaryTableRow.appendChild(summaryTableCellData);
+  summaryTable.appendChild(summaryTableRow);
+  modalSummaryDetail.appendChild(summaryTable);
+
+  modalSummaryDetail.appendChild(summaryTable);
+}
+
 // Handlre to close the delete confirmation modal
 function closeDeleteModal() {
   //DONE
@@ -163,7 +340,7 @@ function deletePost(event) {
   // DONE: Delete a post from the allPosts array and upate local storage & render.
   const num = parseInt(event.target.id);
   let newArray = allPosts.filter(post => post.id !== num);
-  allPosts = newArray;
+  allPosts = [...newArray];
   for(let i = 0; i < allPosts.length; i++){
     allPosts[i].id = i;
   }
@@ -176,11 +353,8 @@ function loadLocalData() {
   // render the posts using the renderPostsLoop. If no local storage display a no posts message
   let postsData = JSON.parse(localStorage.getItem('posts'));
   if (postsData) {
-    allPosts = postsData;
+    allPosts = [...postsData];
     renderPostsLoop(allPosts);
-  } else {
-    console.log('no data found in local storage');
-    renderNoPosts();
   }
 }
 
@@ -269,14 +443,11 @@ function renderPostCard(data, index) {
   cardParent.insertBefore(newCard, cardFirstChild);
 }
 
-function renderNoPosts() {
-  // TODO: display a no posts message to screen
-  // postCard.textContent = 'No posts found in local storage';
-}
-
 // filter & render
 function filterCheckedHandler(event) {
-  // DONE
+  // DONE checks what filters are set active on the subjects then. Stores them in a temp array or removes
+  // a subject when turned off. At end will call renderPostsLoop to render all the posts with the filtered data
+  // that is received from the renderPosts function.
   event.stopPropagation();
   if (event.target.tagName !== 'INPUT') {
     return;
@@ -297,8 +468,8 @@ function filterCheckedHandler(event) {
   renderPostsLoop(renderPosts(favorite));
 }
 
-function renderPosts(favorite = false) {
-  // DONE
+function renderPosts(favorite) {
+  // DONE The main function that handles the filtering, if needed and returns this data.
   if (!filterSubject.length && !favorite) {
     postContainer.innerHTML = '';
     return allPosts;
