@@ -39,12 +39,10 @@ postFavoriteButton.addEventListener('click', favoriteClickHandler);
 modalDeleteCancelButton.addEventListener('click', closeDeleteModal);
 modalDeleteYesButton.addEventListener('click', deletePost);
 filterFavoriteSwitch.addEventListener('click', filterFavoriteHandler);
+addPostButton.addEventListener('click', openModal);
 
 // Set some object values to reuse code
 savePostButton.mode = 'add';
-
-// Event listener for addPost button to open backdrop & modal
-addPostButton.addEventListener('click', openModal);
 
 // Validation check for post title on the input element
 const inputTitle = document.querySelector('.post-form #title');
