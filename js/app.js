@@ -355,14 +355,28 @@ function loadLocalData() {
   if (postsData) {
     allPosts = [...postsData];
     renderPostsLoop(allPosts);
+  } else {
+    displayNoPosts();
   }
 }
 
 function renderPostsLoop(data) {
   // DONE loop over the allPosts array and render each card to post-cards DOM element.
-  for (let i = 0; i < data.length; i++) {
-    renderPostCard(data, i);
+  if (data.length) {
+    for (let i = 0; i < data.length; i++) {
+      renderPostCard(data, i);
+    } 
+  } else {
+    displayNoPosts();
   }
+}
+
+function displayNoPosts() {
+  // DONE: Displays a message if no posts found in local storage or when filtered
+  const elementH1 = document.createElement('h1');
+  elementH1.textContent = 'No Posts Found to Display. Add some or change filter(s)';
+  elementH1.classList.add('post-card__empty');
+  postContainer.appendChild(elementH1);
 }
 
 function saveLocalData() {

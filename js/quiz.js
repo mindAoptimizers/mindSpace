@@ -81,6 +81,7 @@ quizForm.addEventListener('submit', function (e) {
 
 function displayLeaderboard() {
   let table = document.getElementById('score-leaderboard');
+  table.innerHTML = '';
   let tr = document.createElement('tr');
   let td = document.createElement('td');
   td.textcontent = retrievedPlayers;
