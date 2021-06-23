@@ -13,7 +13,7 @@
       <h1 class="modal__title">Blog Post Entry</h1>
       <form class="post-form" id="post-form">
         <label for="title">Title</label>
-        <input id="title" type="text" name="title" required>
+        <input id="title" type="text" name="title" required placeholder="Enter your post title">
         <label for="post">Blog Post</label>
         <textarea name="post" id="post" cols="40" rows="15" placeholder="Enter your blog post" name="post" required></textarea>
         <label for="subject">Subject</label>
@@ -34,19 +34,30 @@
         <input type="checkbox" id="favorite" name="favorite" value="true">
       </form>
       <div class="modal__actions">
-        <button class="modal__action modal__action--negative" type="submit">Cancel</button>
-        <button class="modal__action" type="button" form="post-form">Save</button>
+        <input class="modal__action" form="post-form" id="save-post" type="submit" value="Save">
+        <button class="modal__action modal__action--negative" id="cancel-post">Cancel</button>
       </div>
     </div>
     <div class='modal__delete'>
       <h1 class="modal__title">Delete Post?</h1>
       <div class="modal__actions">
-        <button class="modal__action modal__action--negative" type="button">Cancel</button>
-        <button class="modal__action" type="button">Yes, Delete</button>
+        <button class="modal__action modal__action--negative" id="delete-cancel" type="button">Cancel</button>
+        <button class="modal__action" id="delete-yes" type="button">Yes, Delete</button>
+      </div>
+    </div>
+    <div class='modal__summary'>
+      <h1 class="modal__title">Post Summary</h1>
+      <div class="modal-summary__detail"></div>
+      <div class="modal__actions">
+        <button class="modal__action" id="summary-close" type="button">Close</button>
       </div>
     </div>
     <header class="header-main">
+<<<<<<< HEAD
         <a href="./index.html" class="header-main__brand">
+=======
+        <a href="#" class="header-main__brand">
+>>>>>>> dev
         <img src="./img/brain-logo2-transparent.png" alt="">mindSpace
       </a>
       <nav class="header-nav">
@@ -98,15 +109,6 @@
               <label>Favorite</label>
               <input class="filter-main__favorite" type="checkbox" id="switch"/>
               <label class="switch" for="switch"></label>
-              <!-- <label>Beginner</label>
-              <input class="filter-main__beginner" type="checkbox" id="switch"/>
-              <label class="switch" for="switch"></label>
-              <label>Intermediate</label>
-              <input class="filter-main__intermediate" type="checkbox" id="switch"/>
-              <label class="switch" for="switch"></label>
-              <label>Advance</label>
-              <input class="filter-main__advance" type="checkbox" id="switch"/>
-              <label class="switch" for="switch"></label> -->
             </div>
           </li>
         </ul>
