@@ -25,6 +25,7 @@ const postFavoriteButton = document.querySelector('.post-cards');
 const postContainer = document.querySelector('.post-cards');
 const filterItemsContainer = document.querySelector('.filter-main__items');
 const filterFavoriteSwitch = document.querySelector('.filter-main__favorite');
+const filterLevel = document.querySelector('.filter-main__level select');
 
 // set event listeners
 // savePostButton.addEventListener('submit', addPost);
@@ -40,6 +41,7 @@ modalDeleteCancelButton.addEventListener('click', closeDeleteModal);
 modalDeleteYesButton.addEventListener('click', deletePost);
 filterFavoriteSwitch.addEventListener('click', filterFavoriteHandler);
 addPostButton.addEventListener('click', openModal);
+filterLevel.addEventListener('change', filterLevelHandler);
 
 // Set some object values to reuse code
 savePostButton.mode = 'add';
@@ -63,6 +65,13 @@ inputPost.addEventListener('input', function() {
     inputPost.setCustomValidity('');
   }
 });
+
+function filterLevelHandler(event) {
+  const levelFilter = event.target.value;
+  const favorite = filterFavoriteSwitch.checked;
+  renderPostsLoop(renderPosts(favorite, levelFilter));
+
+}
 
 // Post constructor
 function Post(id, title, post, subject, difficulty, favorite, image) {
@@ -88,7 +97,8 @@ function openModal() {
 function filterFavoriteHandler(event) {
   event.stopPropagation();
   const favorite = event.target.checked;
-  renderPostsLoop(renderPosts(favorite));
+  const level = filterLevel.value;
+  renderPostsLoop(renderPosts(favorite, level));
 }
 
 // Function to toggle a post as favorite
@@ -383,7 +393,8 @@ function saveLocalData() {
   // renders all posts again. This to get the updated index numbers after a delete.
   postContainer.innerHTML = '';
   const favorite = filterFavoriteSwitch.checked;
-  renderPostsLoop(renderPosts(favorite));
+  const level = filterLevel.value;
+  renderPostsLoop(renderPosts(favorite, level));
   localStorage.setItem('posts', JSON.stringify(allPosts));
 }
 
@@ -465,6 +476,7 @@ function filterCheckedHandler(event) {
     return;
   }
   const favorite = filterFavoriteSwitch.checked;
+  const levelFilter = filterLevel.value;
   if (event.target.checked) {
     filterSubject.push(event.target.id);
   } else if (!event.target.checked) {
@@ -477,24 +489,34 @@ function filterCheckedHandler(event) {
       }
     }
   }
-  renderPostsLoop(renderPosts(favorite));
+  renderPostsLoop(renderPosts(favorite, levelFilter));
 }
 
-function renderPosts(favorite) {
+function renderPosts(favorite, level) {
   // DONE The main function that handles the filtering, if needed and returns this data.
-  if (!filterSubject.length && !favorite) {
+  postContainer.innerHTML = '';
+  if (!filterSubject.length && !favorite && level === 'All') {
     postContainer.innerHTML = '';
     return allPosts;
-  } else if (!filterSubject.length && favorite) {
-    postContainer.innerHTML = '';
-    let filteredPosts = allPosts.filter(post => post.favorite);
+  }
+  let filteredPosts = [...allPosts];
+  if (!filterSubject.length && favorite && level === 'All') {
+    filteredPosts = allPosts.filter(post => post.favorite);
+    return filteredPosts;
+  } else if (!filterSubject.length && favorite && level !== 'All') {
+    filteredPosts = allPosts.filter(post => post.favorite && post.difficulty === level);
+    return filteredPosts;
+  } else if (!filterSubject.length && level !== 'All') {
+    filteredPosts = allPosts.filter(post => post.difficulty === level);
     return filteredPosts;
   }
-  let filteredPosts = allPosts.filter(post => filterSubject.includes(post.subject));
+  filteredPosts = allPosts.filter(post => filterSubject.includes(post.subject));
   if (favorite) {
     filteredPosts = filteredPosts.filter(post => post.favorite);
   }
-  postContainer.innerHTML = '';
+  if (level !== 'All') {
+    filteredPosts = filteredPosts.filter(post => post.difficulty === level);
+  }
   return filteredPosts;
 }
 
